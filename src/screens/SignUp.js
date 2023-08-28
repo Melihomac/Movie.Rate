@@ -8,21 +8,33 @@ import {
     Button,
     TouchableOpacity,
 } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import Google from '../../assets/img/mdi_google.svg'
 import Facebook from '../../assets/img/facebook.svg'
+import { NavigationContainer, useNavigation, } from "@react-navigation/native";
+import 'react-native-gesture-handler';
 
-const SignIn = ({ navigation }) => {
+const SignUp = () => {
+    const navigation = useNavigation();
+    const [fullName, onFullName] = React.useState('Full Name');
     const [emailText, onEmailText] = React.useState('Email');
     const [passwordText, onPasswordText] = React.useState('Password');
+    const [confirmPassword, onConfirmPassword] = React.useState('Confirm Password');
+    const [date, onDate] = React.useState('Date');
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Image source={require('../../assets/img/LogoYan.png')} style={styles.image} />
             <View>
-                <Text style={styles.signinText}>Sign In</Text>
-                <Text style={styles.signinDetailText}>Please sign in to continue</Text>
+                <Text style={styles.signinText}>Sign Up</Text>
+                <Text style={styles.signinDetailText}>Please sign up to continue</Text>
             </View>
             <View>
+                <TextInput
+                    style={styles.nameInputStyle}
+                    onChangeText={fullName => onFullName(fullName)}
+                    value={fullName}
+                    keyboardType='default'
+                ></TextInput>
                 <TextInput
                     style={styles.emailInputStyle}
                     onChangeText={emailText => onEmailText(emailText)}
@@ -35,38 +47,34 @@ const SignIn = ({ navigation }) => {
                     value={passwordText}
                     keyboardType='default'
                 ></TextInput>
+                <TextInput
+                    style={styles.passwordInputStyle}
+                    onChangeText={confirmPassword => onConfirmPassword(confirmPassword)}
+                    value={confirmPassword}
+                    keyboardType='default'
+                ></TextInput>
+                <TextInput
+                    style={styles.passwordInputStyle}
+                    onChangeText={date => onDate(date)}
+                    value={date}
+                    keyboardType='default'
+                ></TextInput>
                 <TouchableOpacity style={styles.signinButton}>
-                    <Text style={{ color: '#fff', textAlign: 'center' }}>Sign In  &#10140;</Text>
+                    <Text style={{ color: '#fff', textAlign: 'center' }}>Sign Up  &#10140;</Text>
                 </TouchableOpacity>
-                <View>
-                    <TouchableOpacity style={styles.signinGoogle}>
-                        <Google width={20} height={20} />
-                        <Text style={{ color: '#b4b4b4', textAlign: 'right', marginLeft: 150 }}>
-                            Sign in with Google
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-                <View>
-                    <TouchableOpacity style={styles.signinFacebook}>
-                        <Facebook width={30} height={20} />
-                        <Text style={{ color: '#b4b4b4', textAlign: 'right', marginLeft: 125 }}>
-                            Sign in with Facebook
-                        </Text>
-                    </TouchableOpacity>
-                </View>
                 <View style={styles.haveAccount}>
-                    <Text style={styles.signupText}>Don't have an account ? </Text>
+                    <Text style={styles.signupText}>Already have an account ? </Text>
                     <TouchableOpacity>
                         <Text
                             style={styles.signUp}
-                            onPress={() => navigation.push("SignUp")}
+                            onPress={navigation.goBack}
                         >
-                            Sign up
+                            Sign in
                         </Text>
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -90,11 +98,23 @@ const styles = StyleSheet.create({
         marginTop: 5,
         color: "#B4B4B4"
     },
-    emailInputStyle: {
+    nameInputStyle: {
         fontSize: 15,
         marginLeft: 30,
         marginRight: 30,
         marginTop: 30,
+        borderColor: '#d4d4d4',
+        borderRadius: 10,
+        borderWidth: 0.5,
+        padding: 15,
+        backgroundColor: '#fff',
+        color: '#b4b4b4',
+    },
+    emailInputStyle: {
+        fontSize: 15,
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 15,
         borderColor: '#d4d4d4',
         borderRadius: 10,
         borderWidth: 0.5,
@@ -175,4 +195,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default SignIn
+export default SignUp

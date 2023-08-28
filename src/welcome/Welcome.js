@@ -9,6 +9,9 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import Home from '../HomeScreen/Home';
+import { MMKVLoader, useMMKVStorage } from 'react-native-mmkv-storage';
+//const storage = new MMKVLoader().initialize();
 
 const Slides = [
     {
@@ -93,20 +96,7 @@ const Welcome = ({ navigation }) => {
     return (
         <>
             {showRealApp ? (
-                <SafeAreaView style={styles.container}>
-                    <View style={styles.container}>
-                        <Text style={styles.titleStyle}>
-                            React Native App Intro Slider using AppIntroSlider
-                        </Text>
-                        <Text style={styles.paragraphStyle}>
-                            This will be your screen when you click Skip from any slide or
-                            Done button at last
-                        </Text>
-                        <TouchableOpacity onPress={() => setShowRealApp(false)}>
-                            <Text style={styles.showIntroSlider}>Show Intro Slider again</Text>
-                        </TouchableOpacity>
-                    </View>
-                </SafeAreaView >
+                <Home />
             ) : (
                 <AppIntroSlider
                     data={Slides}
