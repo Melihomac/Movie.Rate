@@ -5,47 +5,36 @@ import {
   SafeAreaView,
   View,
   Button,
+  Text,
+  TouchableOpacity,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import Welcome from './screens/Welcome';
-import A from "./screens/A";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Welcome from "./src/welcome/Welcome";
+import HeaderBackButton from "./src/headerbackbutton/HeaderBackButton";
+import { NavigationContainer, useNavigation, } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import 'react-native-gesture-handler';
-import { HeaderBackButton } from '@react-navigation/elements';
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import SignIn from "./src/screens/SignIn";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
   return (
-    <>
-      <View style={styles.container}>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Welcome">
-            <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
-            <Stack.Screen name="A" component={A} options={{
-              title: '', headerLeft: () => (
-                <BackButton />
-              )
-            }}></Stack.Screen>
-          </Stack.Navigator >
-        </NavigationContainer >
-      </View >
-    </>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerLeft: () => <HeaderBackButton /> }} initialRouteName="Welcome">
+          <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
+          <Stack.Screen name="SignIn" component={SignIn} options={{ title: '', headerShadowVisible: false }} />
+        </Stack.Navigator >
+      </NavigationContainer >
+    </SafeAreaProvider>
   );
 }
 
-const BackButton = () => {
-  const navigation = useNavigation()
-  return (
-    <HeaderBackButton
-      onPress={() => navigation.goBack()}
-    ></HeaderBackButton>
-  )
-}
 
 const styles = StyleSheet.create({
   container: {

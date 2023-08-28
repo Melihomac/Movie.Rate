@@ -9,9 +9,6 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import 'react-native-gesture-handler';
 
 const Slides = [
     {
@@ -84,7 +81,7 @@ const Welcome = ({ navigation }) => {
                     <Text style={styles.SignMessageTextStyle}>Already a member?</Text>
                     <Text
                         style={styles.SignTextStyle}
-                        onPress={() => navigation.navigate("A")}
+                        onPress={() => navigation.push("SignIn")}
                     >
                         Sign in
                     </Text>
