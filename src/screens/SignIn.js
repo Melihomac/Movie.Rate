@@ -7,6 +7,7 @@ import {
     Image,
     Button,
     TouchableOpacity,
+    ScrollView,
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Google from '../../assets/img/mdi_google.svg'
@@ -16,7 +17,7 @@ const SignIn = ({ navigation }) => {
     const [emailText, onEmailText] = React.useState('Email');
     const [passwordText, onPasswordText] = React.useState('Password');
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Image source={require('../../assets/img/LogoYan.png')} style={styles.image} />
             <View>
                 <Text style={styles.signinText}>Sign In</Text>
@@ -40,7 +41,7 @@ const SignIn = ({ navigation }) => {
                 </TouchableOpacity>
                 <View>
                     <TouchableOpacity style={styles.signinGoogle}>
-                        <Google width={20} height={20} />
+                        <Google width={20} height={20} style={{ marginLeft: 5 }} />
                         <Text style={{ color: '#b4b4b4', textAlign: 'right', marginLeft: 150 }}>
                             Sign in with Google
                         </Text>
@@ -66,7 +67,7 @@ const SignIn = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

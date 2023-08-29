@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import Welcome from "./src/welcome/Welcome";
-import HeaderBackButton from "./src/headerbackbutton/HeaderBackButton";
+import HeaderBackButton from "./src/HeaderBackButton/HeaderBackButton";
 import { NavigationContainer, useNavigation, } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import 'react-native-gesture-handler';

@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import Home from '../HomeScreen/Home';
+import Home from '../homeScreen/Home';
 import { MMKVLoader, useMMKVStorage } from 'react-native-mmkv-storage';
 //const storage = new MMKVLoader().initialize();
 
