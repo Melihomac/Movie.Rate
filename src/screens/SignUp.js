@@ -9,8 +9,6 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
-import Google from '../../assets/img/mdi_google.svg'
-import Facebook from '../../assets/img/facebook.svg'
 import { NavigationContainer, useNavigation, } from "@react-navigation/native";
 import 'react-native-gesture-handler';
 
@@ -84,7 +82,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     image: {
-        marginLeft: 250,
+        marginLeft: 230,
+        height: 160,
     },
     signinText: {
         fontWeight: 'bold',
@@ -102,11 +101,11 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 30,
         marginRight: 30,
-        marginTop: 30,
+        marginTop: 15,
         borderColor: '#d4d4d4',
         borderRadius: 10,
         borderWidth: 0.5,
-        padding: 15,
+        padding: 10,
         backgroundColor: '#fff',
         color: '#b4b4b4',
     },
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
         borderColor: '#d4d4d4',
         borderRadius: 10,
         borderWidth: 0.5,
-        padding: 15,
+        padding: 10,
         backgroundColor: '#fff',
         color: '#b4b4b4',
     },
@@ -130,7 +129,7 @@ const styles = StyleSheet.create({
         borderColor: '#d4d4d4',
         borderRadius: 10,
         borderWidth: 0.5,
-        padding: 15,
+        padding: 10,
         backgroundColor: '#fff',
         color: '#b4b4b4',
     },
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 230,
         marginRight: 30,
-        marginTop: 30,
+        marginTop: 15,
         borderColor: '#d4d4d4',
         borderRadius: 20,
         padding: 20,
@@ -148,36 +147,8 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
         elevation: 5,
     },
-    signinGoogle: {
-        fontSize: 15,
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 30,
-        borderColor: '#d4d4d4',
-        borderRadius: 10,
-        borderWidth: 0.5,
-        padding: 15,
-        borderTopWidth: 0,
-        borderLeftWidth: 0,
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-    },
-    signinFacebook: {
-        fontSize: 15,
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 15,
-        borderColor: '#d4d4d4',
-        borderRadius: 10,
-        borderWidth: 0.5,
-        padding: 15,
-        borderTopWidth: 0,
-        borderLeftWidth: 0,
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-    },
     haveAccount: {
-        marginTop: 30,
+        marginTop: 15,
         flexDirection: 'row',
     },
     signupText: {
@@ -192,6 +163,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         fontWeight: 'bold',
         marginRight: 90,
+        marginBottom: 30,
     },
 })
 

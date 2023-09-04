@@ -12,6 +12,8 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import Home from '../homeScreen/Home';
 import { MMKVLoader, useMMKVStorage } from 'react-native-mmkv-storage';
 //const storage = new MMKVLoader().initialize();
+import { MMKV } from 'react-native-mmkv';
+//MMKV.set('is-mmkv-fast-asf', true)
 
 const Slides = [
     {

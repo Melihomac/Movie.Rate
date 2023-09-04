@@ -18,56 +18,58 @@ const SignIn = ({ navigation }) => {
     const [passwordText, onPasswordText] = React.useState('Password');
     return (
         <ScrollView style={styles.container}>
-            <Image source={require('../../assets/img/LogoYan.png')} style={styles.image} />
-            <View>
-                <Text style={styles.signinText}>Sign In</Text>
-                <Text style={styles.signinDetailText}>Please sign in to continue</Text>
-            </View>
-            <View>
-                <TextInput
-                    style={styles.emailInputStyle}
-                    onChangeText={emailText => onEmailText(emailText)}
-                    value={emailText}
-                    keyboardType='default'
-                ></TextInput>
-                <TextInput
-                    style={styles.passwordInputStyle}
-                    onChangeText={passwordText => onPasswordText(passwordText)}
-                    value={passwordText}
-                    keyboardType='default'
-                ></TextInput>
-                <TouchableOpacity style={styles.signinButton}>
-                    <Text style={{ color: '#fff', textAlign: 'center' }}>Sign In  &#10140;</Text>
-                </TouchableOpacity>
+            <SafeAreaView>
+                <Image source={require('../../assets/img/LogoYan.png')} style={styles.image} />
                 <View>
-                    <TouchableOpacity style={styles.signinGoogle}>
-                        <Google width={20} height={20} style={{ marginLeft: 5 }} />
-                        <Text style={{ color: '#b4b4b4', textAlign: 'right', marginLeft: 150 }}>
-                            Sign in with Google
-                        </Text>
-                    </TouchableOpacity>
+                    <Text style={styles.signinText}>Sign In</Text>
+                    <Text style={styles.signinDetailText}>Please sign in to continue</Text>
                 </View>
                 <View>
-                    <TouchableOpacity style={styles.signinFacebook}>
-                        <Facebook width={30} height={20} />
-                        <Text style={{ color: '#b4b4b4', textAlign: 'right', marginLeft: 125 }}>
-                            Sign in with Facebook
-                        </Text>
+                    <TextInput
+                        style={styles.emailInputStyle}
+                        onChangeText={emailText => onEmailText(emailText)}
+                        value={emailText}
+                        keyboardType='default'
+                    ></TextInput>
+                    <TextInput
+                        style={styles.passwordInputStyle}
+                        onChangeText={passwordText => onPasswordText(passwordText)}
+                        value={passwordText}
+                        keyboardType='default'
+                    ></TextInput>
+                    <TouchableOpacity style={styles.signinButton}>
+                        <Text style={{ color: '#fff', textAlign: 'center' }}>Sign In  &#10140;</Text>
                     </TouchableOpacity>
+                    <View>
+                        <TouchableOpacity style={styles.signinGoogle}>
+                            <Google width={20} height={20} style={{ marginLeft: 5 }} />
+                            <Text style={{ color: '#b4b4b4', textAlign: 'right', marginLeft: 145 }}>
+                                Sign in with Google
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View>
+                        <TouchableOpacity style={styles.signinFacebook}>
+                            <Facebook width={30} height={20} />
+                            <Text style={{ color: '#b4b4b4', textAlign: 'right', marginLeft: 120 }}>
+                                Sign in with Facebook
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.haveAccount}>
+                        <Text style={styles.signupText}>Don't have an account ? </Text>
+                        <TouchableOpacity>
+                            <Text
+                                style={styles.signUp}
+                                onPress={() => navigation.push("SignUp")}
+                            >
+                                Sign up
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={styles.haveAccount}>
-                    <Text style={styles.signupText}>Don't have an account ? </Text>
-                    <TouchableOpacity>
-                        <Text
-                            style={styles.signUp}
-                            onPress={() => navigation.push("SignUp")}
-                        >
-                            Sign up
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </ScrollView>
+            </SafeAreaView>
+        </ScrollView >
     )
 }
 
@@ -77,7 +79,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     image: {
-        marginLeft: 250,
+        marginLeft: 230,
+        height: 160,
     },
     signinText: {
         fontWeight: 'bold',
@@ -95,11 +98,11 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 30,
         marginRight: 30,
-        marginTop: 30,
+        marginTop: 15,
         borderColor: '#d4d4d4',
         borderRadius: 10,
         borderWidth: 0.5,
-        padding: 15,
+        padding: 10,
         backgroundColor: '#fff',
         color: '#b4b4b4',
     },
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
         borderColor: '#d4d4d4',
         borderRadius: 10,
         borderWidth: 0.5,
-        padding: 15,
+        padding: 10,
         backgroundColor: '#fff',
         color: '#b4b4b4',
     },
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 230,
         marginRight: 30,
-        marginTop: 30,
+        marginTop: 15,
         borderColor: '#d4d4d4',
         borderRadius: 20,
         padding: 20,
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 30,
         marginRight: 30,
-        marginTop: 30,
+        marginTop: 15,
         borderColor: '#d4d4d4',
         borderRadius: 10,
         borderWidth: 0.5,
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     haveAccount: {
-        marginTop: 30,
+        marginTop: 15,
         flexDirection: 'row',
     },
     signupText: {
@@ -173,6 +176,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         fontWeight: 'bold',
         marginRight: 90,
+        marginBottom: 30
     },
 })
 
