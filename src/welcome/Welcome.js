@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -11,9 +11,10 @@ import {
 import AppIntroSlider from 'react-native-app-intro-slider';
 import Home from '../homeScreen/Home';
 import { MMKVLoader, useMMKVStorage } from 'react-native-mmkv-storage';
-//const storage = new MMKVLoader().initialize();
 import { MMKV } from 'react-native-mmkv';
-//MMKV.set('is-mmkv-fast-asf', true)
+// const storage = new MMKVLoader().initialize();
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Loading from "../LoadingScreen/Loading"
 
 const Slides = [
     {
@@ -59,15 +60,32 @@ const Slides = [
 ]
 
 const Welcome = ({ navigation }) => {
-    const [showRealApp, setShowRealApp] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [showRealApp, setShowRealApp] = useState(false)
+
+    const checkForFirstTimeLoaded = async () => {
+        const result = await AsyncStorage.getItem('showRealApp');
+        if (result === null) setShowRealApp(true);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        checkForFirstTimeLoaded();
+    }, []);
 
     const onDone = () => {
-        setShowRealApp(true);
+        setShowRealApp(false)
+        AsyncStorage.setItem('showRealApp', 'no');
     };
 
     const onSkip = () => {
-        setShowRealApp(true);
+        setShowRealApp(false)
+        AsyncStorage.setItem('showRealApp', 'no');
     };
+
+    if (loading) return null;
+
+    console.log(showRealApp)
 
     const RenderItem = ({ item }) => {
         return (
@@ -95,22 +113,29 @@ const Welcome = ({ navigation }) => {
         );
     };
 
-    return (
-        <>
-            {showRealApp ? (
-                <Home />
-            ) : (
-                <AppIntroSlider
-                    data={Slides}
-                    renderItem={RenderItem}
-                    onDone={onDone}
-                    showSkipButton={true}
-                    onSkip={onSkip}
-                />
-            )}
-        </>
-    );
+    if (showRealApp)
+        return (
+            <AppIntroSlider
+                data={Slides}
+                renderItem={RenderItem}
+                onDone={onDone}
+                showSkipButton={true}
+                onSkip={onSkip}
+            />
+        );
+    if (!showRealApp)
+        return (
+            <Loading />
+        )
+
 };
+
+// function OneTimeScreen() {
+//     const storage = new MMKV
+//     storage.set('showRealApp', true)
+//     console.log(storage.getBoolean('showRealApp'))
+//     return storage.getBoolean('showRealApp')
+// }
 
 const styles = StyleSheet.create({
     container: {
@@ -165,4 +190,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Welcome; 
+export default Welcome 

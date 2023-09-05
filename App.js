@@ -17,6 +17,7 @@ import 'react-native-gesture-handler';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import SignIn from "./src/screens/SignIn";
 import SignUp from "./src/screens/SignUp";
+import Loading from "./src/LoadingScreen/Loading";
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,7 @@ const App = () => {
           <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
           <Stack.Screen name="SignIn" component={SignIn} options={{ title: '', headerShadowVisible: false }} />
           <Stack.Screen name="SignUp" component={SignUp} options={{ title: '', headerShadowVisible: false }} />
+          <Stack.Screen name="Loading" component={Loading} options={{ title: '', headerShadowVisible: false }} />
         </Stack.Navigator >
       </NavigationContainer >
     </SafeAreaProvider>
