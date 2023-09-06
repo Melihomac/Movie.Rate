@@ -85,8 +85,6 @@ const Welcome = ({ navigation }) => {
 
     if (loading) return null;
 
-    console.log(showRealApp)
-
     const RenderItem = ({ item }) => {
         return (
             <View

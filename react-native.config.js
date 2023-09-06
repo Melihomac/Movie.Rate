@@ -3,5 +3,5 @@ module.exports = {
         ios: {},
         android: {},
     },
-    assets: ['./assets/'], // path of your assert file
+    assets: ['./assets/fonts/'],
 };

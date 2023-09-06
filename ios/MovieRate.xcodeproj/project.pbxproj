@@ -11,16 +11,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2224A0446AAC41018065EE5F /* facebook.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1060C058482E4734B504FA3B /* facebook.svg */; };
-		62C89E4134E4442594270987 /* cimcime.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9D1E0B315544098FD11628 /* cimcime.png */; };
-		74012BBE91BD429E86ECC9A2 /* BackButton.svg in Resources */ = {isa = PBXBuildFile; fileRef = C3F5D6CEDF9941788BC386C9 /* BackButton.svg */; };
-		7B39606334D1475F991D3250 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DA3652A8696492B8DFC9609 /* Logo.png */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		999FD28511F845E9E7A9B699 /* Pods_MovieRate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02EBCE3F7F3F3D94EAC9A2DC /* Pods_MovieRate.framework */; };
-		A012D704823D4E26AC166951 /* LogoYan.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BBC72E0A8ED432BA7AD3817 /* LogoYan.png */; };
-		B610AC2F56D44C4B91321D56 /* cimcime@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3593C1E3FC9C4501A5478959 /* cimcime@3x.png */; };
-		BA62543A8D8945FC9957CFBF /* mdi_google.svg in Resources */ = {isa = PBXBuildFile; fileRef = F1D0AA9A838E4C5586A66B68 /* mdi_google.svg */; };
-		C60FE8748E384DDFB813F5A8 /* cimcime@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A35B1692D81F4FD9821A097A /* cimcime@2x.png */; };
 		C9EE12CF2A9CF177005EA7E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9EE12CE2A9CF177005EA7E1 /* GoogleService-Info.plist */; };
 		CC3CCA91A5625E4969B9A67F /* Pods_MovieRate_MovieRateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D0BA5AB8FAB59DE3988BB4 /* Pods_MovieRate_MovieRateTests.framework */; };
 /* End PBXBuildFile section */
@@ -47,7 +39,6 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MovieRateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieRateTests.m; sourceTree = "<group>"; };
 		02EBCE3F7F3F3D94EAC9A2DC /* Pods_MovieRate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieRate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1060C058482E4734B504FA3B /* facebook.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = facebook.svg; path = ../assets/img/facebook.svg; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MovieRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MovieRate/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = MovieRate/AppDelegate.mm; sourceTree = "<group>"; };
@@ -55,21 +46,14 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MovieRate/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MovieRate/main.m; sourceTree = "<group>"; };
 		28D0BA5AB8FAB59DE3988BB4 /* Pods_MovieRate_MovieRateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieRate_MovieRateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3593C1E3FC9C4501A5478959 /* cimcime@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "cimcime@3x.png"; path = "../assets/ios/cimcime@3x.png"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-MovieRate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieRate.debug.xcconfig"; path = "Target Support Files/Pods-MovieRate/Pods-MovieRate.debug.xcconfig"; sourceTree = "<group>"; };
-		3F9D1E0B315544098FD11628 /* cimcime.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = cimcime.png; path = "../assets/android/drawable-hdpi/cimcime.png"; sourceTree = "<group>"; };
-		4BBC72E0A8ED432BA7AD3817 /* LogoYan.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = LogoYan.png; path = ../assets/img/LogoYan.png; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-MovieRate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieRate.release.xcconfig"; path = "Target Support Files/Pods-MovieRate/Pods-MovieRate.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-MovieRate-MovieRateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieRate-MovieRateTests.debug.xcconfig"; path = "Target Support Files/Pods-MovieRate-MovieRateTests/Pods-MovieRate-MovieRateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MovieRate/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-MovieRate-MovieRateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieRate-MovieRateTests.release.xcconfig"; path = "Target Support Files/Pods-MovieRate-MovieRateTests/Pods-MovieRate-MovieRateTests.release.xcconfig"; sourceTree = "<group>"; };
-		8DA3652A8696492B8DFC9609 /* Logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Logo.png; path = ../assets/img/Logo.png; sourceTree = "<group>"; };
-		A35B1692D81F4FD9821A097A /* cimcime@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "cimcime@2x.png"; path = "../assets/ios/cimcime@2x.png"; sourceTree = "<group>"; };
-		C3F5D6CEDF9941788BC386C9 /* BackButton.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = BackButton.svg; path = ../assets/img/BackButton.svg; sourceTree = "<group>"; };
 		C97C4BD12A97AF5A00442BD3 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		C9EE12CE2A9CF177005EA7E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F1D0AA9A838E4C5586A66B68 /* mdi_google.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = mdi_google.svg; path = ../assets/img/mdi_google.svg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,14 +172,6 @@
 		CAA6045FBF4E470ABA190B07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3F9D1E0B315544098FD11628 /* cimcime.png */,
-				C3F5D6CEDF9941788BC386C9 /* BackButton.svg */,
-				8DA3652A8696492B8DFC9609 /* Logo.png */,
-				4BBC72E0A8ED432BA7AD3817 /* LogoYan.png */,
-				1060C058482E4734B504FA3B /* facebook.svg */,
-				F1D0AA9A838E4C5586A66B68 /* mdi_google.svg */,
-				A35B1692D81F4FD9821A097A /* cimcime@2x.png */,
-				3593C1E3FC9C4501A5478959 /* cimcime@3x.png */,
 			);
 			name = Resources;
 			path = "";
@@ -315,14 +291,6 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				C9EE12CF2A9CF177005EA7E1 /* GoogleService-Info.plist in Resources */,
-				62C89E4134E4442594270987 /* cimcime.png in Resources */,
-				74012BBE91BD429E86ECC9A2 /* BackButton.svg in Resources */,
-				7B39606334D1475F991D3250 /* Logo.png in Resources */,
-				A012D704823D4E26AC166951 /* LogoYan.png in Resources */,
-				2224A0446AAC41018065EE5F /* facebook.svg in Resources */,
-				BA62543A8D8945FC9957CFBF /* mdi_google.svg in Resources */,
-				C60FE8748E384DDFB813F5A8 /* cimcime@2x.png in Resources */,
-				B610AC2F56D44C4B91321D56 /* cimcime@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,6 +704,26 @@
 					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/…/node_modules/react-native-splash-screen/iosJoin";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -808,6 +796,26 @@
 					"<Multiple",
 					"values>",
 					"$(SRCROOT)/…/node_modules/react-native-splash-screen/iosJoin",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",

@@ -9,11 +9,11 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-const Home = () => {
+const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text>Hello</Text>
-        </View>
+            <Text onPress={() => navigation.push("Home")}> Hello</Text>
+        </View >
     )
 }
 

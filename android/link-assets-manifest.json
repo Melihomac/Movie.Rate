@@ -1,37 +1,4 @@
 {
   "migIndex": 1,
-  "data": [
-    {
-      "path": "assets/android/drawable-hdpi/cimcime.png",
-      "sha1": "55298c735a83b881e9e1b0e19518d4a9f9e2eaab"
-    },
-    {
-      "path": "assets/img/BackButton.svg",
-      "sha1": "59d8e92eb93f6d075310194fefc55b223fcb962c"
-    },
-    {
-      "path": "assets/img/Logo.png",
-      "sha1": "024e70ecb172707e2571daab0c0c011843c4f4c8"
-    },
-    {
-      "path": "assets/img/LogoYan.png",
-      "sha1": "e22cef21e6e6877b5ecee60779a120d30a31abd6"
-    },
-    {
-      "path": "assets/img/facebook.svg",
-      "sha1": "bdde670a3d9b47259528473f4b7a1baa313e7f11"
-    },
-    {
-      "path": "assets/img/mdi_google.svg",
-      "sha1": "82eb0d4f10e572b3e9d4db35c6da04797e65d9de"
-    },
-    {
-      "path": "assets/ios/cimcime@2x.png",
-      "sha1": "d2d995ab5efbb77204906ccbe77d3e380e0af580"
-    },
-    {
-      "path": "assets/ios/cimcime@3x.png",
-      "sha1": "a38651aab37a18b92b95327bf6f5d1cd501688a6"
-    }
-  ]
+  "data": []
 }
