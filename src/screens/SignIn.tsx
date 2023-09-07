@@ -8,19 +8,36 @@ import {
     Button,
     TouchableOpacity,
     ScrollView,
+    ActivityIndicator,
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Google from '../../assets/img/mdi_google.svg'
 import Facebook from '../../assets/img/facebook.svg'
 import { NavigationProp } from '@react-navigation/native';
+import { FIREBASE_AUTH } from '../../FirebaseConfig';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 interface RouterProps {
     navigation: NavigationProp<any, any>;
 }
 
 const SignIn = ({ navigation }: RouterProps) => {
-    const [emailText, onEmailText] = React.useState('Email');
-    const [passwordText, onPasswordText] = React.useState('Password');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const auth = FIREBASE_AUTH;
+    const signIn = async () => {
+        setLoading(true)
+        try {
+            const response = await signInWithEmailAndPassword(auth, email, password)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+        finally {
+            setLoading(false)
+        }
+    }
     return (
         <ScrollView style={styles.container}>
             <SafeAreaView>
@@ -32,19 +49,28 @@ const SignIn = ({ navigation }: RouterProps) => {
                 <View>
                     <TextInput
                         style={styles.emailInputStyle}
-                        onChangeText={emailText => onEmailText(emailText)}
-                        value={emailText}
+                        onChangeText={(text) => setEmail(text)}
+                        value={email}
                         keyboardType='default'
+                        autoCapitalize='none'
+                        placeholder='Email'
                     ></TextInput>
                     <TextInput
                         style={styles.passwordInputStyle}
-                        onChangeText={passwordText => onPasswordText(passwordText)}
-                        value={passwordText}
+                        onChangeText={(text) => setPassword(text)}
+                        value={password}
                         keyboardType='default'
+                        secureTextEntry={true}
+                        placeholder='Password'
                     ></TextInput>
-                    <TouchableOpacity style={styles.signinButton}>
-                        <Text style={{ color: '#fff', textAlign: 'center' }}>Sign In  &#10140;</Text>
-                    </TouchableOpacity>
+                    {loading ? <ActivityIndicator size="large" color="#000ff" />
+                        :
+                        <>
+                            <TouchableOpacity style={styles.signinButton} onPress={signIn}>
+                                <Text style={{ color: '#fff', textAlign: 'center' }}>Sign In  &#10140;</Text>
+                            </TouchableOpacity>
+                        </>
+                    }
                     <View>
                         <TouchableOpacity style={styles.signinGoogle}>
                             <Google width={20} height={20} style={{ marginLeft: 5 }} />
@@ -109,7 +135,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         padding: 10,
         backgroundColor: '#fff',
-        color: '#b4b4b4',
+        color: 'black',
     },
     passwordInputStyle: {
         fontSize: 15,
@@ -121,7 +147,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         padding: 10,
         backgroundColor: '#fff',
-        color: '#b4b4b4',
+        color: 'black',
     },
     signinButton: {
         fontSize: 15,

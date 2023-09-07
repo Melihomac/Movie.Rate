@@ -7,18 +7,35 @@ import {
     Image,
     Button,
     TouchableOpacity,
+    ActivityIndicator,
+    KeyboardAvoidingView
 } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { NavigationContainer, useNavigation, } from "@react-navigation/native";
 import 'react-native-gesture-handler';
+import { FIREBASE_AUTH } from '../../FirebaseConfig';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 const SignUp = () => {
     const navigation = useNavigation();
-    const [fullName, onFullName] = React.useState('Full Name');
-    const [emailText, onEmailText] = React.useState('Email');
-    const [passwordText, onPasswordText] = React.useState('Password');
-    const [confirmPassword, onConfirmPassword] = React.useState('Confirm Password');
-    const [date, onDate] = React.useState('Date');
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [loading, setLoading] = useState(false);
+    const auth = FIREBASE_AUTH;
+    const signUp = async () => {
+        setLoading(true)
+        try {
+            const response = await createUserWithEmailAndPassword(auth, email, password)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+        finally {
+            setLoading(false)
+        }
+    }
     return (
         <ScrollView style={styles.container}>
             <Image source={require('../../assets/img/LogoYan.png')} style={styles.image} />
@@ -27,39 +44,48 @@ const SignUp = () => {
                 <Text style={styles.signinDetailText}>Please sign up to continue</Text>
             </View>
             <View>
-                <TextInput
-                    style={styles.nameInputStyle}
-                    onChangeText={fullName => onFullName(fullName)}
-                    value={fullName}
-                    keyboardType='default'
-                ></TextInput>
-                <TextInput
-                    style={styles.emailInputStyle}
-                    onChangeText={emailText => onEmailText(emailText)}
-                    value={emailText}
-                    keyboardType='default'
-                ></TextInput>
-                <TextInput
-                    style={styles.passwordInputStyle}
-                    onChangeText={passwordText => onPasswordText(passwordText)}
-                    value={passwordText}
-                    keyboardType='default'
-                ></TextInput>
-                <TextInput
-                    style={styles.passwordInputStyle}
-                    onChangeText={confirmPassword => onConfirmPassword(confirmPassword)}
-                    value={confirmPassword}
-                    keyboardType='default'
-                ></TextInput>
-                <TextInput
-                    style={styles.passwordInputStyle}
-                    onChangeText={date => onDate(date)}
-                    value={date}
-                    keyboardType='default'
-                ></TextInput>
-                <TouchableOpacity style={styles.signinButton}>
-                    <Text style={{ color: '#fff', textAlign: 'center' }}>Sign Up  &#10140;</Text>
-                </TouchableOpacity>
+                <KeyboardAvoidingView behavior='padding'>
+                    <TextInput
+                        style={styles.nameInputStyle}
+                        onChangeText={(text) => setName(text)}
+                        value={name}
+                        keyboardType='default'
+                        autoCapitalize='none'
+                        placeholder='Full Name'
+                    ></TextInput>
+                    <TextInput
+                        style={styles.emailInputStyle}
+                        onChangeText={(text) => setEmail(text)}
+                        value={email}
+                        keyboardType='default'
+                        autoCapitalize='none'
+                        placeholder='Email'
+                    ></TextInput>
+                    <TextInput
+                        style={styles.passwordInputStyle}
+                        onChangeText={(text) => setPassword(text)}
+                        value={password}
+                        keyboardType='default'
+                        secureTextEntry={true}
+                        placeholder='Password'
+                    ></TextInput>
+                    <TextInput
+                        style={styles.passwordInputStyle}
+                        onChangeText={(text) => setConfirmPassword(text)}
+                        value={confirmPassword}
+                        keyboardType='default'
+                        secureTextEntry={true}
+                        placeholder='Confirm Password'
+                    ></TextInput>
+                    {loading ? <ActivityIndicator size="large" color="#000ff" />
+                        :
+                        <>
+                            <TouchableOpacity style={styles.signinButton} onPress={signUp}>
+                                <Text style={{ color: '#fff', textAlign: 'center' }}>Sign Up  &#10140;</Text>
+                            </TouchableOpacity>
+                        </>
+                    }
+                </KeyboardAvoidingView>
                 <View style={styles.haveAccount}>
                     <Text style={styles.signupText}>Already have an account ? </Text>
                     <TouchableOpacity>
@@ -107,7 +133,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         padding: 10,
         backgroundColor: '#fff',
-        color: '#b4b4b4',
+        color: 'black',
     },
     emailInputStyle: {
         fontSize: 15,
@@ -119,7 +145,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         padding: 10,
         backgroundColor: '#fff',
-        color: '#b4b4b4',
+        color: 'black',
     },
     passwordInputStyle: {
         fontSize: 15,
@@ -131,7 +157,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         padding: 10,
         backgroundColor: '#fff',
-        color: '#b4b4b4',
+        color: 'black',
     },
     signinButton: {
         fontSize: 15,

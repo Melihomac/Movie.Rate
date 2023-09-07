@@ -9,11 +9,10 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-const Home = ({ navigation }) => {
+const Home = () => {
     return (
         <View style={styles.container}>
             <Text>Home Screen</Text>
-            <Button onPress={() => navigation.navigate("SignIn")} title="Open sign in"></Button>
         </View >
     )
 }

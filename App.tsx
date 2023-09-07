@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -7,6 +7,7 @@ import {
   Button,
   Text,
   TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import Welcome from "./src/welcome/Welcome";
@@ -19,33 +20,49 @@ import SignIn from "./src/screens/SignIn";
 import SignUp from "./src/screens/SignUp";
 import Loading from "./src/LoadingScreen/Loading";
 import Home from "./src/homeScreen/Home";
+import { User, onAuthStateChanged } from "firebase/auth";
+import { FIREBASE_AUTH } from "./FirebaseConfig";
 
 const Stack = createStackNavigator();
+const InsideStack = createStackNavigator();
 
-const App = () => {
+function InsideLayout() {
+  return (
+    <InsideStack.Navigator>
+      <InsideStack.Screen name="Home" component={Home} options={{ title: '', headerShadowVisible: false }} />
+    </InsideStack.Navigator>
+  )
+}
+
+export default function App() {
+  const [user, setUser] = useState<User | null>(null)
   useEffect(() => {
     SplashScreen.hide();
+    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      console.log("user ", user)
+      setUser(user)
+    })
   }, []);
   return (
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerLeft: () => <HeaderBackButton /> }} initialRouteName="Welcome">
           <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
-          <Stack.Screen name="SignIn" component={SignIn} options={{ title: '', headerShadowVisible: false }} />
           <Stack.Screen name="SignUp" component={SignUp} options={{ title: '', headerShadowVisible: false }} />
           <Stack.Screen name="Loading" component={Loading} options={{ title: '', headerShadowVisible: false }} />
-          <Stack.Screen name="Home" component={Home} options={{ title: '', headerShadowVisible: false }} />
+          <Stack.Screen name="SignIn" component={SignIn} options={{ title: '', headerShadowVisible: false }} />
+          {user ? <Stack.Screen name="Home" component={Home} options={{ title: '', headerShadowVisible: false }} />
+            :
+            null
+          }
         </Stack.Navigator >
       </NavigationContainer >
     </SafeAreaProvider>
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
 });
-
-export default App;
