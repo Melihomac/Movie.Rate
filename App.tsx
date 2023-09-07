@@ -1,68 +1,69 @@
-import * as React from "react";
-import { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  SafeAreaView,
-  View,
-  Button,
-  Text,
-  TouchableOpacity,
-  ActivityIndicator
-} from 'react-native';
+import * as React from 'react';
+import {useEffect, useState} from 'react';
 import SplashScreen from 'react-native-splash-screen';
-import Welcome from "./src/welcome/Welcome";
-import HeaderBackButton from "./src/HeaderBackButton/HeaderBackButton";
-import { NavigationContainer, useNavigation, } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import Welcome from './src/welcome/Welcome';
+import HeaderBackButton from './src/HeaderBackButton/HeaderBackButton';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import SignIn from "./src/screens/SignIn";
-import SignUp from "./src/screens/SignUp";
-import Loading from "./src/LoadingScreen/Loading";
-import Home from "./src/homeScreen/Home";
-import { User, onAuthStateChanged } from "firebase/auth";
-import { FIREBASE_AUTH } from "./FirebaseConfig";
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import SignIn from './src/screens/SignIn';
+import SignUp from './src/screens/SignUp';
+import Loading from './src/LoadingScreen/Loading';
+import Home from './src/homeScreen/Home';
+import {User, onAuthStateChanged} from 'firebase/auth';
+import {FIREBASE_AUTH} from './FirebaseConfig';
 
 const Stack = createStackNavigator();
-const InsideStack = createStackNavigator();
-
-function InsideLayout() {
-  return (
-    <InsideStack.Navigator>
-      <InsideStack.Screen name="Home" component={Home} options={{ title: '', headerShadowVisible: false }} />
-    </InsideStack.Navigator>
-  )
-}
 
 export default function App() {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
     SplashScreen.hide();
-    onAuthStateChanged(FIREBASE_AUTH, (user) => {
-      console.log("user ", user)
-      setUser(user)
-    })
+    onAuthStateChanged(FIREBASE_AUTH, user => {
+      console.log('user ', user);
+      setUser(user);
+    });
   }, []);
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerLeft: () => <HeaderBackButton /> }} initialRouteName="Welcome">
-          <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
-          <Stack.Screen name="SignUp" component={SignUp} options={{ title: '', headerShadowVisible: false }} />
-          <Stack.Screen name="Loading" component={Loading} options={{ title: '', headerShadowVisible: false }} />
-          <Stack.Screen name="SignIn" component={SignIn} options={{ title: '', headerShadowVisible: false }} />
-          {user ? <Stack.Screen name="Home" component={Home} options={{ title: '', headerShadowVisible: false }} />
-            :
-            null
-          }
-        </Stack.Navigator >
-      </NavigationContainer >
+        <Stack.Navigator initialRouteName="Welcome">
+          <Stack.Screen
+            name="Welcome"
+            component={Welcome}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUp}
+            options={{
+              title: '',
+              headerShadowVisible: false,
+              headerLeft: () => <HeaderBackButton />,
+            }}
+          />
+          <Stack.Screen
+            name="Loading"
+            component={Loading}
+            options={{title: '', headerShadowVisible: false}}
+          />
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{
+              title: '',
+              headerShadowVisible: false,
+              headerLeft: () => <HeaderBackButton />,
+            }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{title: '', headerShown: false, gestureEnabled: false}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
