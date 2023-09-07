@@ -12,7 +12,8 @@ import {
 const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text onPress={() => navigation.push("Home")}> Hello</Text>
+            <Text>Home Screen</Text>
+            <Button onPress={() => navigation.navigate("SignIn")} title="Open sign in"></Button>
         </View >
     )
 }

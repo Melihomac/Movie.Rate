@@ -12,8 +12,13 @@ import {
 import { TextInput } from 'react-native-gesture-handler';
 import Google from '../../assets/img/mdi_google.svg'
 import Facebook from '../../assets/img/facebook.svg'
+import { NavigationProp } from '@react-navigation/native';
 
-const SignIn = ({ navigation }) => {
+interface RouterProps {
+    navigation: NavigationProp<any, any>;
+}
+
+const SignIn = ({ navigation }: RouterProps) => {
     const [emailText, onEmailText] = React.useState('Email');
     const [passwordText, onPasswordText] = React.useState('Password');
     return (
@@ -61,7 +66,7 @@ const SignIn = ({ navigation }) => {
                         <TouchableOpacity>
                             <Text
                                 style={styles.signUp}
-                                onPress={() => navigation.push("SignUp")}
+                                onPress={() => navigation.navigate("SignUp")}
                             >
                                 Sign up
                             </Text>
