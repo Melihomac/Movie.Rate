@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   KeyboardAvoidingView,
+  FlatList,
 } from 'react-native';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
@@ -77,6 +78,13 @@ const SignUp = () => {
             keyboardType="default"
             secureTextEntry={true}
             placeholder="Confirm Password"></TextInput>
+          <TextInput
+            style={styles.passwordInputStyle}
+            onChangeText={text => setConfirmPassword(text)}
+            value={confirmPassword}
+            keyboardType="default"
+            secureTextEntry={true}
+            placeholder="Date"></TextInput>
           {loading ? (
             <ActivityIndicator size="large" color="#000ff" />
           ) : (

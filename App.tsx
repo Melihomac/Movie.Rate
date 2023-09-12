@@ -13,57 +13,65 @@ import Loading from './src/LoadingScreen/Loading';
 import Home from './src/homeScreen/Home';
 import {User, onAuthStateChanged} from 'firebase/auth';
 import {FIREBASE_AUTH} from './FirebaseConfig';
+import useAuth from './src/hooks/useAuth';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const {user} = useAuth();
   useEffect(() => {
     SplashScreen.hide();
-    onAuthStateChanged(FIREBASE_AUTH, user => {
-      console.log('user ', user);
-      setUser(user);
-    });
   }, []);
-  return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Welcome">
-          <Stack.Screen
-            name="Welcome"
-            component={Welcome}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="SignUp"
-            component={SignUp}
-            options={{
-              title: '',
-              headerShadowVisible: false,
-              headerLeft: () => <HeaderBackButton />,
-            }}
-          />
-          <Stack.Screen
-            name="Loading"
-            component={Loading}
-            options={{title: '', headerShadowVisible: false}}
-          />
-          <Stack.Screen
-            name="SignIn"
-            component={SignIn}
-            options={{
-              title: '',
-              headerShadowVisible: false,
-              headerLeft: () => <HeaderBackButton />,
-            }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{title: '', headerShown: false, gestureEnabled: false}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
-  );
+  if (user) {
+    return (
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{title: '', headerShown: false, gestureEnabled: false}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    );
+  } else {
+    return (
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Welcome">
+            <Stack.Screen
+              name="Welcome"
+              component={Welcome}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUp}
+              options={{
+                title: '',
+                headerShadowVisible: false,
+                headerLeft: () => <HeaderBackButton />,
+              }}
+            />
+            <Stack.Screen
+              name="Loading"
+              component={Loading}
+              options={{title: '', headerShadowVisible: false}}
+            />
+            <Stack.Screen
+              name="SignIn"
+              component={SignIn}
+              options={{
+                title: '',
+                headerShadowVisible: false,
+                headerLeft: () => <HeaderBackButton />,
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    );
+  }
 }
