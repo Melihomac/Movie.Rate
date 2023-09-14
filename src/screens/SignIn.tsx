@@ -14,12 +14,7 @@ import Google from '../../assets/img/mdi_google.svg';
 import Facebook from '../../assets/img/facebook.svg';
 import {NavigationProp} from '@react-navigation/native';
 import {FIREBASE_AUTH} from '../../FirebaseConfig';
-import {
-  signInWithEmailAndPassword,
-  setPersistence,
-  browserLocalPersistence,
-  Persistence,
-} from '@firebase/auth';
+import {signInWithEmailAndPassword} from '@firebase/auth';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;

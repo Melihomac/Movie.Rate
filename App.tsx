@@ -11,17 +11,20 @@ import SignIn from './src/screens/SignIn';
 import SignUp from './src/screens/SignUp';
 import Loading from './src/LoadingScreen/Loading';
 import Home from './src/homeScreen/Home';
-import {User, onAuthStateChanged} from 'firebase/auth';
-import {FIREBASE_AUTH} from './FirebaseConfig';
 import useAuth from './src/hooks/useAuth';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  const {user} = useAuth();
+  const {user, loading} = useAuth();
   useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+    if (!loading) {
+      SplashScreen.hide();
+    }
+  }, [loading]);
+  if (loading) {
+    return null;
+  }
   console.log(user);
   return (
     <SafeAreaProvider>
