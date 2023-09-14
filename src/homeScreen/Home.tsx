@@ -5,8 +5,6 @@ import {signOut} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../FirebaseConfig';
 
 const Home = () => {
-  let {user} = useAuth();
-  console.log('user : ' + user);
   const handleLogout = async () => {
     await signOut(FIREBASE_AUTH);
   };

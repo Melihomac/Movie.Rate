@@ -22,56 +22,51 @@ export default function App() {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
-  if (user) {
-    return (
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Home">
+  console.log(user);
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          {user ? (
             <Stack.Screen
               name="Home"
               component={Home}
               options={{title: '', headerShown: false, gestureEnabled: false}}
             />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider>
-    );
-  } else {
-    return (
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Welcome">
-            <Stack.Screen
-              name="Welcome"
-              component={Welcome}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="SignUp"
-              component={SignUp}
-              options={{
-                title: '',
-                headerShadowVisible: false,
-                headerLeft: () => <HeaderBackButton />,
-              }}
-            />
-            <Stack.Screen
-              name="Loading"
-              component={Loading}
-              options={{title: '', headerShadowVisible: false}}
-            />
-            <Stack.Screen
-              name="SignIn"
-              component={SignIn}
-              options={{
-                title: '',
-                headerShadowVisible: false,
-                headerLeft: () => <HeaderBackButton />,
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider>
-    );
-  }
+          ) : (
+            <>
+              <Stack.Screen
+                name="Welcome"
+                component={Welcome}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="SignUp"
+                component={SignUp}
+                options={{
+                  title: '',
+                  headerShadowVisible: false,
+                  headerLeft: () => <HeaderBackButton />,
+                }}
+              />
+              <Stack.Screen
+                name="Loading"
+                component={Loading}
+                options={{title: '', headerShadowVisible: false}}
+              />
+              <Stack.Screen
+                name="SignIn"
+                component={SignIn}
+                options={{
+                  title: '',
+                  headerShadowVisible: false,
+                  headerLeft: () => <HeaderBackButton />,
+                }}
+              />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
 }
