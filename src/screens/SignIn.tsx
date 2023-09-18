@@ -24,7 +24,7 @@ const SignIn = ({navigation}: RouterProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  //setPersistence(FIREBASE_AUTH, browserLocalPersistence);
+  const [error, setError] = useState<string | null>(null);
   const signIn = async () => {
     setLoading(true);
     try {
@@ -36,6 +36,7 @@ const SignIn = ({navigation}: RouterProps) => {
       console.log(response);
       navigation.navigate('Home');
     } catch (error) {
+      setError('Email or password is incorrect');
       console.log(error);
     } finally {
       setLoading(false);
@@ -69,6 +70,7 @@ const SignIn = ({navigation}: RouterProps) => {
             keyboardType="default"
             secureTextEntry={true}
             placeholder="Password"></TextInput>
+          {error && <Text style={styles.errorText}>{error}</Text>}
           {loading ? (
             <ActivityIndicator size="large" color="#000ff" />
           ) : (
@@ -84,7 +86,11 @@ const SignIn = ({navigation}: RouterProps) => {
             <TouchableOpacity style={styles.signinGoogle}>
               <Google width={20} height={20} style={{marginLeft: 5}} />
               <Text
-                style={{color: '#b4b4b4', textAlign: 'right', marginLeft: 145}}>
+                style={{
+                  color: '#b4b4b4',
+                  textAlign: 'right',
+                  marginLeft: 145,
+                }}>
                 Sign in with Google
               </Text>
             </TouchableOpacity>
@@ -93,20 +99,26 @@ const SignIn = ({navigation}: RouterProps) => {
             <TouchableOpacity style={styles.signinFacebook}>
               <Facebook width={30} height={20} />
               <Text
-                style={{color: '#b4b4b4', textAlign: 'right', marginLeft: 120}}>
+                style={{
+                  color: '#b4b4b4',
+                  textAlign: 'right',
+                  marginLeft: 120,
+                }}>
                 Sign in with Facebook
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.haveAccount}>
-            <Text style={styles.signupText}>Don't have an account ? </Text>
-            <TouchableOpacity>
-              <Text
-                style={styles.signUp}
-                onPress={() => navigation.navigate('SignUp')}>
-                Sign up
-              </Text>
-            </TouchableOpacity>
+          <View style={styles.bottomContainer}>
+            <View style={styles.haveAccount}>
+              <Text style={styles.signupText}>Don't have an account ? </Text>
+              <TouchableOpacity>
+                <Text
+                  style={styles.signUp}
+                  onPress={() => navigation.navigate('SignUp')}>
+                  Sign up
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </SafeAreaView>
@@ -118,6 +130,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  bottomContainer: {
+    justifyContent: 'flex-end',
   },
   image: {
     marginLeft: 230,
@@ -158,6 +173,12 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#fff',
     color: 'black',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 16,
+    marginTop: 10,
+    textAlign: 'center',
   },
   signinButton: {
     fontSize: 15,
@@ -202,7 +223,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   haveAccount: {
-    marginTop: 15,
+    marginTop: 30,
     flexDirection: 'row',
   },
   signupText: {

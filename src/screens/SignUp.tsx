@@ -32,21 +32,21 @@ const SignUp = () => {
   const signUp = async () => {
     if (!validateEmail(email)) {
       // E-posta geçerli değil, kullanıcıya uyarı gösterin veya işlemi durdurun.
-      setErrorEmail('Geçersiz e-posta adresi');
+      setErrorEmail('Invalid e-mail address');
       setLoading(false);
       return;
     } else {
       setErrorEmail(null);
     }
     if (password !== confirmPassword) {
-      setError('Şifreler eşleşmiyor');
+      setError('Passwords do not match');
       setLoading(false);
       return;
     } else {
       setError(null);
     }
     if (password.length < 6) {
-      setError('Şifre en az 6 karakter olmalı');
+      setError('The password should be 6 characters at least');
       setLoading(false);
       return;
     } else {
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   haveAccount: {
-    marginTop: 15,
+    marginTop: 30,
     flexDirection: 'row',
   },
   signupText: {
