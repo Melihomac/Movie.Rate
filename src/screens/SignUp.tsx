@@ -22,8 +22,37 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [errorEmail, setErrorEmail] = useState<string | null>(null);
   const auth = FIREBASE_AUTH;
+  const validateEmail = (email: any) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
   const signUp = async () => {
+    if (!validateEmail(email)) {
+      // E-posta geçerli değil, kullanıcıya uyarı gösterin veya işlemi durdurun.
+      setErrorEmail('Geçersiz e-posta adresi');
+      setLoading(false);
+      return;
+    } else {
+      setErrorEmail(null);
+    }
+    if (password !== confirmPassword) {
+      setError('Şifreler eşleşmiyor');
+      setLoading(false);
+      return;
+    } else {
+      setError(null);
+    }
+    if (password.length < 6) {
+      setError('Şifre en az 6 karakter olmalı');
+      setLoading(false);
+      return;
+    } else {
+      setError(null);
+    }
+
     setLoading(true);
     try {
       const response = await createUserWithEmailAndPassword(
@@ -32,8 +61,8 @@ const SignUp = () => {
         password,
       );
       console.log(response);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log(error.message);
     } finally {
       setLoading(false);
     }
@@ -64,6 +93,7 @@ const SignUp = () => {
             keyboardType="default"
             autoCapitalize="none"
             placeholder="Email"></TextInput>
+          {errorEmail && <Text style={styles.errorText}>{errorEmail}</Text>}
           <TextInput
             style={styles.passwordInputStyle}
             onChangeText={text => setPassword(text)}
@@ -78,13 +108,7 @@ const SignUp = () => {
             keyboardType="default"
             secureTextEntry={true}
             placeholder="Confirm Password"></TextInput>
-          <TextInput
-            style={styles.passwordInputStyle}
-            onChangeText={text => setConfirmPassword(text)}
-            value={confirmPassword}
-            keyboardType="default"
-            secureTextEntry={true}
-            placeholder="Date"></TextInput>
+          {error && <Text style={styles.errorText}>{error}</Text>}
           {loading ? (
             <ActivityIndicator size="large" color="#000ff" />
           ) : (
@@ -154,6 +178,12 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#fff',
     color: 'black',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 16,
+    marginTop: 10,
+    textAlign: 'center',
   },
   passwordInputStyle: {
     fontSize: 15,
