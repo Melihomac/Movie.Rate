@@ -11,9 +11,39 @@ import SignIn from './src/screens/SignIn';
 import SignUp from './src/screens/SignUp';
 import Loading from './src/LoadingScreen/Loading';
 import Home from './src/homeScreen/Home';
+import Profile from './src/ProfileScreen/Profile';
 import useAuth from './src/hooks/useAuth';
+import HomeIcon from './assets/icons/house-solid.svg';
+import ProfileIcon from './assets/icons/user-solid.svg';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export function TabsNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          title: '',
+          headerShown: false,
+          tabBarIcon: () => <HomeIcon name="ios-home" />,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: '',
+          headerShown: false,
+          tabBarIcon: () => <ProfileIcon name="ios-profile" />,
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   const {user, loading} = useAuth();
@@ -29,12 +59,12 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator>
           {user ? (
             <Stack.Screen
-              name="Home"
-              component={Home}
-              options={{title: '', headerShown: false, gestureEnabled: false}}
+              name="tabsNavigator"
+              component={TabsNavigator}
+              options={{title: '', headerShown: false}}
             />
           ) : (
             <>

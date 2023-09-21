@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Home from '../homeScreen/Home';
+import {TabsNavigator} from '../../App';
 
 const Loading = ({navigation}) => {
   const [loading, setLoading] = useState(true);
@@ -47,8 +48,6 @@ const Loading = ({navigation}) => {
     return null;
   }
 
-  //console.log(showRealApp)
-
   if (showRealApp) {
     this._start();
     return (
@@ -75,7 +74,7 @@ const Loading = ({navigation}) => {
     );
   }
   if (!showRealApp) {
-    return <Home />;
+    return <TabsNavigator />;
   }
 };
 

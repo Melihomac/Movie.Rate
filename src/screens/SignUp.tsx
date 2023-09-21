@@ -31,7 +31,6 @@ const SignUp = () => {
   };
   const signUp = async () => {
     if (!validateEmail(email)) {
-      // E-posta geçerli değil, kullanıcıya uyarı gösterin veya işlemi durdurun.
       setErrorEmail('Invalid e-mail address');
       setLoading(false);
       return;
