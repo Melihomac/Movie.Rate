@@ -8,7 +8,6 @@ import {
   Image,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Home from '../homeScreen/Home';
 import {TabsNavigator} from '../../App';
 
 const Loading = ({navigation}) => {

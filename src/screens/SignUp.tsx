@@ -12,8 +12,13 @@ import {
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import 'react-native-gesture-handler';
-import {FIREBASE_AUTH} from '../../FirebaseConfig';
+import {FIREBASE_APP, FIREBASE_AUTH, FIRESTORE_DB} from '../../FirebaseConfig';
+import {db} from '../../FirebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {ref, set} from 'firebase/database';
+import 'react-native-get-random-values';
+import uuid from 'react-native-uuid';
+let uuidKey = uuid.v4();
 
 const SignUp = () => {
   const navigation = useNavigation();
@@ -30,6 +35,22 @@ const SignUp = () => {
     return emailRegex.test(email);
   };
   const signUp = async () => {
+    function createDB() {
+      const {currentUser} = auth;
+      set(ref(db, `users/${name}`), {
+        uuid: uuidKey,
+        name: name,
+        email: email,
+        //profile_picture: imageUrl,
+      })
+        .then(() => {
+          console.log('data submitted');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+    createDB();
     if (!validateEmail(email)) {
       setErrorEmail('Invalid e-mail address');
       setLoading(false);
