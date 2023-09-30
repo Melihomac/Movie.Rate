@@ -35,22 +35,22 @@ const SignUp = () => {
     return emailRegex.test(email);
   };
   const signUp = async () => {
-    function createDB() {
-      const {currentUser} = auth;
-      set(ref(db, `users/${name}`), {
-        uuid: uuidKey,
-        name: name,
-        email: email,
-        //profile_picture: imageUrl,
-      })
-        .then(() => {
-          console.log('data submitted');
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-    createDB();
+    // function createDB() {
+    //   const {currentUser} = auth;
+    //   set(ref(db, `users/${name}`), {
+    //     uuid: uuidKey,
+    //     name: name,
+    //     email: email,
+    //     //profile_picture: imageUrl,
+    //   })
+    //     .then(() => {
+    //       console.log('data submitted');
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+    // }
+    // createDB();
     if (!validateEmail(email)) {
       setErrorEmail('Invalid e-mail address');
       setLoading(false);
