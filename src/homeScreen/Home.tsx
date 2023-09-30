@@ -1,5 +1,12 @@
 import * as React from 'react';
-import {StyleSheet, View, Text, Button, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import useAuth from '../hooks/useAuth';
 import {signOut} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../FirebaseConfig';
@@ -8,51 +15,81 @@ import {ref, onValue} from 'firebase/database';
 import {FIREBASE_APP} from '../../FirebaseConfig';
 import {useState, useEffect} from 'react';
 import {Searchbar} from 'react-native-paper';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import useHookGenre from '../hooks/useHookGenre';
+import useHookTrend from '../hooks/useHookTrend';
 
 interface Item {
   id: string;
   name: string;
+  title: string;
+  poster_path: string;
 }
 
 const Home = () => {
-  const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
   const onChangeSearch = (query: any) => setSearchQuery(query);
   const handleLogout = async () => {
     await signOut(FIREBASE_AUTH);
   };
-  const {data, isLoading, error} = useHookGenre();
-  const renderItem = ({item}: {item: Item}) => (
+  const {dataGenre, isLoading, error} = useHookGenre();
+  const {dataTrend, isLoadingTrend, errorTrend} = useHookTrend();
+  const renderItemTrend = ({item}: {item: Item}) => (
     <View>
       <TouchableOpacity>
         <Text style={styles.genreList}>{item.name}</Text>
       </TouchableOpacity>
     </View>
   );
-  return (
-    <SafeAreaView style={styles.container}>
+  const renderItemImage = ({item}: {item: Item}) => {
+    return (
       <View>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-          style={styles.searchBar}
-        />
-        <FlatList
-          data={data?.genres}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          style={styles.genreTotal}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-        {/* <Text>Home Screen</Text>
-        <Button onPress={handleLogout} title="Logout"></Button> */}
+        <TouchableOpacity>
+          <Image
+            style={styles.sliderImage}
+            source={{
+              uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
+            }}
+          />
+        </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    );
+  };
+  return (
+    <ScrollView>
+      <SafeAreaProvider style={styles.container}>
+        <SafeAreaView>
+          <View>
+            <Searchbar
+              placeholder="Search"
+              onChangeText={onChangeSearch}
+              value={searchQuery}
+              style={styles.searchBar}
+            />
+            <FlatList
+              data={dataGenre}
+              renderItem={renderItemTrend}
+              keyExtractor={item => item.id}
+              style={styles.genreTotal}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            />
+            <Text style={styles.trendingFont}>Trending Movies</Text>
+            <FlatList
+              data={dataTrend}
+              renderItem={renderItemImage}
+              style={styles.genreTotal}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            />
+            {/* <Text>Home Screen</Text>
+        <Button onPress={handleLogout} title="Logout"></Button> */}
+          </View>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </ScrollView>
   );
 };
 
@@ -85,6 +122,17 @@ const styles = StyleSheet.create({
     margin: 2.5,
     fontSize: 15,
     padding: 5,
+  },
+  trendingFont: {
+    marginLeft: 15,
+    fontSize: 25,
+    color: '#242424',
+  },
+  sliderImage: {
+    height: 300,
+    width: 175,
+    borderRadius: 30,
+    marginLeft: 15,
   },
 });
 
