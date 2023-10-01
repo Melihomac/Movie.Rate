@@ -29,6 +29,7 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [errorEmail, setErrorEmail] = useState<string | null>(null);
+  const [errorName, setErrorName] = useState<string | null>(null);
   const auth = FIREBASE_AUTH;
   const validateEmail = (email: any) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -72,6 +73,13 @@ const SignUp = () => {
     } else {
       setError(null);
     }
+    if (name === '') {
+      setErrorName('Please enter a name');
+      setLoading(false);
+      return;
+    } else {
+      setErrorName(null);
+    }
 
     setLoading(true);
     try {
@@ -106,6 +114,7 @@ const SignUp = () => {
             keyboardType="default"
             autoCapitalize="none"
             placeholder="Full Name"></TextInput>
+          {errorName && <Text style={styles.errorText}>{errorName}</Text>}
           <TextInput
             style={styles.emailInputStyle}
             onChangeText={text => setEmail(text)}
