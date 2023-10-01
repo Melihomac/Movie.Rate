@@ -3,13 +3,13 @@ import {StyleSheet, View, Text, Button} from 'react-native';
 import {signOut} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../FirebaseConfig';
 
-const Profile = () => {
+const DiscoverScreen = () => {
   const handleLogout = async () => {
     await signOut(FIREBASE_AUTH);
   };
   return (
     <View style={styles.container}>
-      <Text>Profile Screen</Text>
+      <Text>DiscoverScreen</Text>
       <Button onPress={handleLogout} title="Logout"></Button>
     </View>
   );
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile;
+export default DiscoverScreen;

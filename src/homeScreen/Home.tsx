@@ -6,11 +6,11 @@ import {
   Button,
   TouchableOpacity,
   Image,
+  RefreshControl,
 } from 'react-native';
 import useAuth from '../hooks/useAuth';
 import {signOut} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../FirebaseConfig';
-import {db} from '../../FirebaseConfig';
 import {ref, onValue} from 'firebase/database';
 import {FIREBASE_APP} from '../../FirebaseConfig';
 import {useState, useEffect} from 'react';
@@ -35,6 +35,7 @@ const Home = () => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const onChangeSearch = (query: any) => setSearchQuery(query);
   const [selectedItem, setSelectedItem] = useState('All');
+  const [refreshing, setRefreshing] = React.useState(false);
   const handleLogout = async () => {
     await signOut(FIREBASE_AUTH);
   };
@@ -43,6 +44,12 @@ const Home = () => {
   const {dataNewMovie, isLoadingNewMovie, errorNewMovie} = useHookNewMovie();
   const {dataComing, isLoadingComing, errorComing} = useHookComingSoon();
   const {dataTopRated, isLoadingTopRated, errorTopRated} = useHookTopRated();
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1000);
+  }, []);
   const renderItemTrend = ({item}: {item: Item}) => (
     <View>
       <TouchableOpacity>
@@ -102,15 +109,14 @@ const Home = () => {
     );
   };
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.scrollView}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       <SafeAreaView>
         <View>
-          <Searchbar
-            placeholder="Search"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-            style={styles.searchBar}
-          />
           <FlatList
             ListHeaderComponent={renderHeader}
             data={dataGenre}
@@ -166,17 +172,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  searchBar: {
-    backgroundColor: 'white',
-    marginLeft: 15,
-    marginTop: 15,
-    marginRight: 15,
-    shadowOffset: {width: 2.5, height: 2.5},
-    shadowOpacity: 0.5,
-    shadowRadius: 1.5,
+  scrollView: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   genreTotal: {
-    marginTop: 10,
     marginLeft: 5,
     marginRight: 5,
     marginBottom: 10,
