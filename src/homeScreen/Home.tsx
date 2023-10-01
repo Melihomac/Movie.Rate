@@ -115,7 +115,7 @@ const Home = () => {
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
-      <SafeAreaView>
+      <SafeAreaProvider>
         <View>
           <FlatList
             ListHeaderComponent={renderHeader}
@@ -162,7 +162,7 @@ const Home = () => {
           {/* <Text>Home Screen</Text>
         <Button onPress={handleLogout} title="Logout"></Button> */}
         </View>
-      </SafeAreaView>
+      </SafeAreaProvider>
     </ScrollView>
   );
 };
@@ -175,11 +175,12 @@ const styles = StyleSheet.create({
   scrollView: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 5,
   },
   genreTotal: {
     marginLeft: 5,
     marginRight: 5,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   genreList: {
     backgroundColor: 'white',
@@ -193,6 +194,7 @@ const styles = StyleSheet.create({
   },
   trendingFont: {
     marginLeft: 15,
+    marginBottom: 5,
     fontSize: 25,
     color: '#242424',
   },
@@ -220,9 +222,10 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   newMovieNames: {
+    marginTop: 5,
     marginBottom: 5,
     marginRight: 5,
-    marginLeft: 22,
+    marginLeft: 23,
     width: 90,
   },
 });

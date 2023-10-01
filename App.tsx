@@ -33,8 +33,8 @@ export function TabsNavigator() {
       <Tab.Navigator
         screenOptions={() => ({
           tabBarHideOnKeyboard: true,
-          style: {
-            marginTop: 15,
+          tabBarStyle: {
+            padding: 10,
           },
         })}>
         <Tab.Screen
@@ -42,9 +42,12 @@ export function TabsNavigator() {
           component={Home}
           options={{
             headerTitle: 'MovieRate',
+            headerTitleStyle: {
+              color: '#A20E0E',
+            },
             tabBarIcon: () => <HomeIcon name="ios-home" />,
             headerLeft: () => <SideBarButton />,
-            headerRight: () => <Logo width={40} height={40} color={'white'} />,
+            headerRight: () => <Logo width={40} height={40} />,
             title: '',
           }}
         />
