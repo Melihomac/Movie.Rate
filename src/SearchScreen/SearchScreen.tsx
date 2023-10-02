@@ -48,16 +48,17 @@ const SearchScreen = () => {
     );
   };
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={styles.container}>
       <SafeAreaView>
-        <View style={styles.container}>
+        <View>
           <View style={styles.searchContainer}>
             <View style={styles.searchWrapper}>
               <TextInput
                 style={styles.searchInput}
                 value={searchTerm}
                 onChangeText={text => setSearchTerm(text)}
-                placeholder="Search for Movies"
+                placeholder="Search for Movies..."
+                placeholderTextColor="white"
               />
             </View>
             <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
@@ -93,6 +94,11 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingHorizontal: 15,
     fontSize: 15,
+    borderColor: '#A20E0E',
+    borderWidth: 1,
+    borderRadius: 15,
+    color: 'white',
+    fontWeight: 'bold',
   },
   searchContainer: {
     justifyContent: 'center',
