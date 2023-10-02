@@ -8,13 +8,9 @@ import {
   Image,
   RefreshControl,
 } from 'react-native';
-import useAuth from '../hooks/useAuth';
 import {signOut} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../FirebaseConfig';
-import {ref, onValue} from 'firebase/database';
-import {FIREBASE_APP} from '../../FirebaseConfig';
 import {useState, useEffect} from 'react';
-import {Searchbar} from 'react-native-paper';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import useHookGenre from '../hooks/useHookGenre';
@@ -30,7 +26,7 @@ interface Item {
   poster_path: string;
 }
 
-const Home = () => {
+const Home = ({navigation}: any) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const onChangeSearch = (query: any) => setSearchQuery(query);
@@ -74,7 +70,7 @@ const Home = () => {
   const renderItem = ({item}: {item: Item}) => {
     return (
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleCardPress}>
           <Image
             style={styles.sliderImageNewMovie}
             source={{
@@ -107,6 +103,9 @@ const Home = () => {
         </TouchableOpacity>
       </View>
     );
+  };
+  const handleCardPress = (item: any) => {
+    navigation.navigate('Home');
   };
   return (
     <ScrollView
