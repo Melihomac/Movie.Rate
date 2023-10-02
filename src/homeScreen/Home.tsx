@@ -122,7 +122,6 @@ const Home = ({navigation}: any) => {
             stickyHeaderIndices={[0]}
             renderItem={renderItemTrend}
             keyExtractor={item => item.id}
-            style={styles.genreTotal}
             horizontal
             showsHorizontalScrollIndicator={false}
           />
@@ -130,7 +129,7 @@ const Home = ({navigation}: any) => {
           <FlatList
             data={dataTrend}
             renderItem={renderItemImage}
-            style={styles.genreTotal}
+            style={styles.newMovie}
             horizontal
             showsHorizontalScrollIndicator={false}
           />
@@ -176,11 +175,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 5,
   },
-  genreTotal: {
-    marginLeft: 5,
-    marginRight: 5,
-    marginBottom: 5,
-  },
   genreList: {
     backgroundColor: 'white',
     color: '#242424',
@@ -192,6 +186,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   trendingFont: {
+    marginTop: 10,
     marginLeft: 15,
     marginBottom: 5,
     fontSize: 25,
@@ -203,14 +198,12 @@ const styles = StyleSheet.create({
     color: '#242424',
   },
   newMovie: {
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 5,
+    marginTop: 5,
     marginBottom: 10,
   },
   sliderImageTrend: {
     height: 300,
-    width: 175,
+    width: 165,
     borderRadius: 30,
     marginLeft: 15,
   },
