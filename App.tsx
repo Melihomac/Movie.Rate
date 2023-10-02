@@ -14,12 +14,14 @@ import Loading from './src/LoadingScreen/Loading';
 import Home from './src/homeScreen/Home';
 import Profile from './src/ProfileScreen/Profile';
 import SearchScreen from './src/SearchScreen/SearchScreen';
+import List from './src/AddListScreen/List';
 import useAuth from './src/hooks/useAuth';
 import HomeIcon from './assets/icons/house-solid.svg';
 import ProfileIcon from './assets/icons/user-solid.svg';
 import SearchIcon from './assets/icons/searchIcon.svg';
 import DiscoverIcon from './assets/icons/earth-europe-solid.svg';
 import SideBarButton from './src/SideBarButton/SideBarButton';
+import ListIcon from './assets/icons/circle-plus-solid.svg';
 import Logo from './assets/img/Logo.svg';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DiscoverScreen from './src/DiscoverScreen/DiscoverScreen';
@@ -58,6 +60,15 @@ export function TabsNavigator() {
             title: '',
             headerShown: false,
             tabBarIcon: () => <SearchIcon name="ios-search" />,
+          }}
+        />
+        <Tab.Screen
+          name="List"
+          component={List}
+          options={{
+            title: '',
+            headerShown: false,
+            tabBarIcon: () => <ListIcon name="ios-discover" />,
           }}
         />
         <Tab.Screen
