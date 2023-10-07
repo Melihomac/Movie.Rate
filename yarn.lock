@@ -2856,10 +2856,19 @@
     "react-is" "^16.13.0"
     "use-latest-callback" "^0.1.5"
 
-"@react-navigation/elements@^1.3.18":
-  "integrity" "sha512-/0hwnJkrr415yP0Hf4PjUKgGyfshrvNUKFXN85Mrt1gY49hy9IwxZgrrxlh0THXkPeq8q4VWw44eHDfAcQf20Q=="
-  "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.18.tgz"
-  "version" "1.3.18"
+"@react-navigation/drawer@^6.6.4":
+  "integrity" "sha512-MqEFDSkOdKowbtACcfGQeG185gV2V9burT/EgYxU9w9ivRrT1DEqCSwS7MpU1LjKbVuNqUVPBVE83rVWHbowuw=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/drawer/-/drawer-6.6.4.tgz"
+  "version" "6.6.4"
+  dependencies:
+    "@react-navigation/elements" "^1.3.19"
+    "color" "^4.2.3"
+    "warn-once" "^0.1.0"
+
+"@react-navigation/elements@^1.3.18", "@react-navigation/elements@^1.3.19":
+  "integrity" "sha512-7hLvSYKPuDS070pza5gd43WDX7QgfuEmuTWNbCJhKdWlLudYmq3qzxGCBwCfO2dEI6+p8tla5wruaWiGKAbTYw=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.19.tgz"
+  "version" "1.3.19"
 
 "@react-navigation/native-stack@^6.9.13":
   "integrity" "sha512-ejlepMrvFneewL+XlXHHhn+6y3lwvavM4/R7XwBV0XJxCymujexK+7Vkg7UcvJ1lx4CRhOcyBSNfGmdNIHREyQ=="
@@ -2877,10 +2886,10 @@
     "hoist-non-react-statics" "^3.3.2"
     "react-native-safe-area-view" "^0.14.9"
 
-"@react-navigation/native@^6.1.7":
-  "integrity" "sha512-W6E3+AtTombMucCRo6q7vPmluq8hSjS+IxfazJ/SokOe7ChJX7eLvvralIsJkjFj3iWV1KgOSnHxa6hdiFasBw=="
-  "resolved" "https://registry.npmjs.org/@react-navigation/native/-/native-6.1.7.tgz"
-  "version" "6.1.7"
+"@react-navigation/native@^6.1.8":
+  "integrity" "sha512-0alti852nV+8oCVm9H80G6kZvrHoy51+rXBvVCRUs2rNDDozC/xPZs8tyeCJkqdw3cpxZDK8ndXF22uWq28+0Q=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/native/-/native-6.1.8.tgz"
+  "version" "6.1.8"
   dependencies:
     "@react-navigation/core" "^6.4.9"
     "escape-string-regexp" "^4.0.0"
@@ -13760,10 +13769,10 @@
     "opencollective-postinstall" "^2.0.0"
     "prop-types" "^15.7.2"
 
-"react-native-gesture-handler@^2.12.1":
-  "integrity" "sha512-deqh36bw82CFUV9EC4tTo2PP1i9HfCOORGS3Zmv71UYhEZEHkzZv18IZNPB+2Awzj45vLIidZxGYGFxHlDSQ5A=="
-  "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.12.1.tgz"
-  "version" "2.12.1"
+"react-native-gesture-handler@^2.13.1":
+  "integrity" "sha512-hW454X7sjuiBN+lobqw63pmT3boAmTl5OP6zQLq83iEe4T6PcHZ9lxzgCrebtgmutY8cJfq9rM2dOUVh9WBcww=="
+  "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.13.1.tgz"
+  "version" "2.13.1"
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     "hoist-non-react-statics" "^3.3.0"
@@ -13823,10 +13832,10 @@
     "react-native" "^0.29.0"
     "react-native-linear-gradient" "^1.5.12"
 
-"react-native-reanimated@^3.5.0-nightly-20230904-dbfef8ba4":
-  "integrity" "sha512-ZBTOKibTn1IR5IaoQkpPCibuao5SjXR6Pzx+KHM50wrvBnL1PecsnQjmL2VEj8hbwshrzgRGgGt1XM82DKrykw=="
-  "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.5.1.tgz"
-  "version" "3.5.1"
+"react-native-reanimated@^3.5.4":
+  "integrity" "sha512-8we9LLDO1o4Oj9/DICeEJ2K1tjfqkJagqQUglxeUAkol/HcEJ6PGxIrpBcNryLqCDYEcu6FZWld/FzizBIw6bg=="
+  "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.5.4.tgz"
+  "version" "3.5.4"
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.16.7"
     "@babel/preset-typescript" "^7.16.7"
@@ -13856,6 +13865,13 @@
   "integrity" "sha512-L+y2gQZstApb2DavE8se6Mzj3CgxZiHxM0DezAdT4kb6+kV4+WeTN8jPxvrP6zgwbGcjuYKaHrASKnBmhuWmhA=="
   "resolved" "https://registry.npmjs.org/react-native-search-bar/-/react-native-search-bar-3.5.1.tgz"
   "version" "3.5.1"
+  dependencies:
+    "prop-types" "^15.5.10"
+
+"react-native-side-menu-updated@^1.3.2":
+  "integrity" "sha512-38MErOgwoUQdFY4IEIYAO+JokWk3hCOhqirqwWBBXqwgTD9qeezlv9eWEMBaDsQSk/iW+cqLPkAafOAWeSXCVw=="
+  "resolved" "https://registry.npmjs.org/react-native-side-menu-updated/-/react-native-side-menu-updated-1.3.2.tgz"
+  "version" "1.3.2"
   dependencies:
     "prop-types" "^15.5.10"
 
@@ -14073,6 +14089,11 @@
     "xcode" "^1.0.0"
     "xmldoc" "^0.4.0"
     "yargs" "^9.0.0"
+
+"react-navigation-drawer@^2.7.2":
+  "integrity" "sha512-AZgluZ8txCG+MrITF+VuHYAnnLaUQw/HvxHKWrAngy/CbmyEIgXEowvShCKMZDMa7PUtKY5+xuwgQtniGgGKsg=="
+  "resolved" "https://registry.npmjs.org/react-navigation-drawer/-/react-navigation-drawer-2.7.2.tgz"
+  "version" "2.7.2"
 
 "react-navigation-stack@^2.10.4":
   "integrity" "sha512-3LE1PFsFV9v4PUlZRATMotqs6H7MOOpIKtjyP+l8D1cyzYmsMQh3EFikeDfzGQUXIvy8VyLAMtcEssicQPYvFA=="

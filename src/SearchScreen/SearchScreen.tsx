@@ -7,47 +7,75 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  ScrollView,
 } from 'react-native';
-import {signOut} from 'firebase/auth';
-import {FIREBASE_AUTH} from '../../FirebaseConfig';
+import {Card} from 'react-native-paper';
 import {TextInput} from 'react-native-gesture-handler';
 import SearchIcon from '../../assets/icons/search.svg';
 import search from '../../assets/icons/search.png';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import useHookSearch from '../hooks/useHookSearch';
 import {useState, useEffect} from 'react';
+import Loading from '../Loading/Loading';
 
 interface Item {
   id: string;
   name: string;
   title: string;
   poster_path: string;
+  dataSearch: string;
+  release_date: string;
+  overview: string;
 }
 
 const SearchScreen = () => {
-  const handleLogout = async () => {
-    await signOut(FIREBASE_AUTH);
-  };
   const [searchTerm, setSearchTerm] = useState('');
-  const {dataSearch, isLoadingSearch, errorSearch} = useHookSearch(searchTerm);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchNow, setSearchNow] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    useHookSearch(searchTerm, movies).then(data => {
+      setMovies(data);
+      setLoading(false);
+    });
+  }, [searchNow]);
+
   const renderItem = ({item}: {item: Item}) => {
     return (
-      <View>
-        <TouchableOpacity>
+      <View
+        style={{
+          borderWidth: 1,
+          margin: 5,
+          borderRadius: 30,
+          borderColor: '#A20E0E',
+        }}>
+        <TouchableOpacity style={{flexDirection: 'row'}}>
           <Image
             style={styles.sliderImageNewMovie}
             source={{
               uri: `https://image.tmdb.org/t/p/w300/${item.poster_path}`,
             }}
           />
-          <Text style={styles.newMovieNames} numberOfLines={1}>
-            {item.title}
-          </Text>
+          <View style={{width: '100%'}}>
+            <Text style={styles.newMovieNames} numberOfLines={2}>
+              {item.title}
+            </Text>
+            <Text style={styles.releaseDate} numberOfLines={1}>
+              Release Date: {item.release_date}
+            </Text>
+            <Text style={styles.overviewStyle} numberOfLines={8}>
+              {item.overview}
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
     );
   };
-  return (
+
+  return loading ? (
+    <Loading />
+  ) : (
     <SafeAreaProvider style={styles.container}>
       <SafeAreaView>
         <View>
@@ -58,10 +86,15 @@ const SearchScreen = () => {
                 value={searchTerm}
                 onChangeText={text => setSearchTerm(text)}
                 placeholder="Search for Movies..."
-                placeholderTextColor="white"
+                placeholderTextColor="black"
               />
             </View>
-            <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+            <TouchableOpacity
+              style={styles.searchBtn}
+              onPress={() => {
+                console.log('pressed');
+                setSearchNow(!searchNow);
+              }}>
               <Image
                 source={search}
                 resizeMode="contain"
@@ -71,13 +104,9 @@ const SearchScreen = () => {
               />
             </TouchableOpacity>
           </View>
-          <FlatList
-            data={dataSearch}
-            renderItem={renderItem}
-            style={styles.newMovie}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
+          <View>
+            <FlatList data={movies} renderItem={renderItem} />
+          </View>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -97,7 +126,7 @@ const styles = StyleSheet.create({
     borderColor: '#A20E0E',
     borderWidth: 1,
     borderRadius: 15,
-    color: 'white',
+    color: '#242424',
     fontWeight: 'bold',
   },
   searchContainer: {
@@ -114,7 +143,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
-    backgroundColor: '#D5D5D5',
     borderRadius: 15,
   },
   searchBtn: {
@@ -136,6 +164,31 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 5,
     marginBottom: 10,
+  },
+  sliderImageNewMovie: {
+    height: 250,
+    width: 150,
+    borderRadius: 30,
+    marginLeft: 15,
+    marginTop: 15,
+    marginBottom: 15,
+  },
+  newMovieNames: {
+    fontSize: 20,
+    marginHorizontal: '5%',
+    marginVertical: '5%',
+    width: '50%',
+  },
+  releaseDate: {
+    fontSize: 15,
+    width: '50%',
+    marginHorizontal: '5%',
+  },
+  overviewStyle: {
+    fontSize: 15,
+    width: '50%',
+    marginHorizontal: '5%',
+    marginTop: 15,
   },
 });
 

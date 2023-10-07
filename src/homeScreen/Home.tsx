@@ -32,9 +32,6 @@ const Home = ({navigation}: any) => {
   const onChangeSearch = (query: any) => setSearchQuery(query);
   const [selectedItem, setSelectedItem] = useState('All');
   const [refreshing, setRefreshing] = React.useState(false);
-  const handleLogout = async () => {
-    await signOut(FIREBASE_AUTH);
-  };
   const {dataGenre, isLoading, error} = useHookGenre();
   const {dataTrend, isLoadingTrend, errorTrend} = useHookTrend();
   const {dataNewMovie, isLoadingNewMovie, errorNewMovie} = useHookNewMovie();
@@ -157,8 +154,6 @@ const Home = ({navigation}: any) => {
             horizontal
             showsHorizontalScrollIndicator={false}
           />
-          {/* <Text>Home Screen</Text>
-        <Button onPress={handleLogout} title="Logout"></Button> */}
         </View>
       </SafeAreaProvider>
     </ScrollView>

@@ -20,7 +20,6 @@ import HomeIcon from './assets/icons/house-solid.svg';
 import ProfileIcon from './assets/icons/user-solid.svg';
 import SearchIcon from './assets/icons/searchIcon.svg';
 import DiscoverIcon from './assets/icons/earth-europe-solid.svg';
-import SideBarButton from './src/SideBarButton/SideBarButton';
 import ListIcon from './assets/icons/circle-plus-solid.svg';
 import Logo from './assets/img/Logo.svg';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -48,8 +47,6 @@ export function TabsNavigator() {
               color: '#A20E0E',
             },
             tabBarIcon: () => <HomeIcon name="ios-home" />,
-            headerLeft: () => <SideBarButton />,
-            headerRight: () => <Logo width={40} height={40} />,
             title: '',
           }}
         />
