@@ -21,7 +21,6 @@ import ProfileIcon from './assets/icons/user-solid.svg';
 import SearchIcon from './assets/icons/searchIcon.svg';
 import DiscoverIcon from './assets/icons/earth-europe-solid.svg';
 import ListIcon from './assets/icons/circle-plus-solid.svg';
-import Logo from './assets/img/Logo.svg';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DiscoverScreen from './src/DiscoverScreen/DiscoverScreen';
 

@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-paper';
 import {TextInput} from 'react-native-gesture-handler';
-import SearchIcon from '../../assets/icons/search.svg';
 import search from '../../assets/icons/search.png';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import useHookSearch from '../hooks/useHookSearch';
@@ -33,6 +32,8 @@ const SearchScreen = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchNow, setSearchNow] = useState(false);
+  const [typingTimeout, setTypingTimeout] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
     setLoading(true);
     useHookSearch(searchTerm, movies).then(data => {
@@ -43,13 +44,7 @@ const SearchScreen = () => {
 
   const renderItem = ({item}: {item: Item}) => {
     return (
-      <View
-        style={{
-          borderWidth: 1,
-          margin: 5,
-          borderRadius: 30,
-          borderColor: '#A20E0E',
-        }}>
+      <View>
         <TouchableOpacity style={{flexDirection: 'row'}}>
           <Image
             style={styles.sliderImageNewMovie}
@@ -64,7 +59,7 @@ const SearchScreen = () => {
             <Text style={styles.releaseDate} numberOfLines={1}>
               Release Date: {item.release_date}
             </Text>
-            <Text style={styles.overviewStyle} numberOfLines={8}>
+            <Text style={styles.overviewStyle} numberOfLines={7}>
               {item.overview}
             </Text>
           </View>
@@ -87,6 +82,8 @@ const SearchScreen = () => {
                 onChangeText={text => setSearchTerm(text)}
                 placeholder="Search for Movies..."
                 placeholderTextColor="black"
+                autoFocus
+                autoComplete="off"
               />
             </View>
             <TouchableOpacity
@@ -105,7 +102,11 @@ const SearchScreen = () => {
             </TouchableOpacity>
           </View>
           <View>
-            <FlatList data={movies} renderItem={renderItem} />
+            <FlatList
+              data={movies}
+              renderItem={renderItem}
+              style={{marginBottom: 180}}
+            />
           </View>
         </View>
       </SafeAreaView>
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginLeft: 15,
     marginTop: 15,
-    marginBottom: 15,
+    marginBottom: 0,
   },
   newMovieNames: {
     fontSize: 20,
