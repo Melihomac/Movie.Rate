@@ -43,6 +43,10 @@ const Home = ({navigation}: any) => {
       setRefreshing(false);
     }, 1000);
   }, []);
+  const handleMovie = (movieId: string) => {
+    // Tıklanan filmin ID'sini kullanarak yeni sayfaya yönlendirme yapabilirsiniz.
+    navigation.navigate('Movie', {movieId});
+  };
   const renderItemTrend = ({item}: {item: Item}) => (
     <View>
       <TouchableOpacity>
@@ -53,7 +57,7 @@ const Home = ({navigation}: any) => {
   const renderItemImage = ({item}: {item: Item}) => {
     return (
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleMovie(item?.poster_path)}>
           <Image
             style={styles.sliderImageTrend}
             source={{

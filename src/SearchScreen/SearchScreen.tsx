@@ -105,7 +105,7 @@ const SearchScreen = () => {
             <FlatList
               data={movies}
               renderItem={renderItem}
-              style={{marginBottom: 180}}
+              style={{marginBottom: 165}}
             />
           </View>
         </View>

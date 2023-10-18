@@ -23,6 +23,7 @@ import DiscoverIcon from './assets/icons/earth-europe-solid.svg';
 import ListIcon from './assets/icons/circle-plus-solid.svg';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DiscoverScreen from './src/DiscoverScreen/DiscoverScreen';
+import Movie from './src/screens/Movie';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -140,6 +141,11 @@ export default function App() {
                   headerShadowVisible: false,
                   headerLeft: () => <HeaderBackButton />,
                 }}
+              />
+              <Stack.Screen
+                name="Movie"
+                component={Movie}
+                options={{headerShown: false}}
               />
             </>
           )}
