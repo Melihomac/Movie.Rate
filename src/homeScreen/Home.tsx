@@ -24,6 +24,7 @@ interface Item {
   name: string;
   title: string;
   poster_path: string;
+  genre_ids: string;
 }
 
 const Home = ({navigation}: any) => {
@@ -43,9 +44,8 @@ const Home = ({navigation}: any) => {
       setRefreshing(false);
     }, 1000);
   }, []);
-  const handleMovie = (movieId: string) => {
-    // Tıklanan filmin ID'sini kullanarak yeni sayfaya yönlendirme yapabilirsiniz.
-    navigation.navigate('Movie', {movieId});
+  const handleMovie = (id: string) => {
+    navigation.navigate('Movie', {id});
   };
   const renderItemTrend = ({item}: {item: Item}) => (
     <View>
@@ -56,22 +56,24 @@ const Home = ({navigation}: any) => {
   );
   const renderItemImage = ({item}: {item: Item}) => {
     return (
-      <View>
-        <TouchableOpacity onPress={() => handleMovie(item?.poster_path)}>
-          <Image
-            style={styles.sliderImageTrend}
-            source={{
-              uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
-            }}
-          />
-        </TouchableOpacity>
-      </View>
+      <>
+        <View>
+          <TouchableOpacity onPress={() => handleMovie(item?.id)}>
+            <Image
+              style={styles.sliderImageTrend}
+              source={{
+                uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+      </>
     );
   };
   const renderItem = ({item}: {item: Item}) => {
     return (
       <View>
-        <TouchableOpacity onPress={handleCardPress}>
+        <TouchableOpacity onPress={() => handleMovie(item?.id)}>
           <Image
             style={styles.sliderImageNewMovie}
             source={{
@@ -104,9 +106,6 @@ const Home = ({navigation}: any) => {
         </TouchableOpacity>
       </View>
     );
-  };
-  const handleCardPress = (item: any) => {
-    navigation.navigate('Home');
   };
   return (
     <ScrollView

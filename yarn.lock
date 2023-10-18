@@ -13769,7 +13769,7 @@
     "opencollective-postinstall" "^2.0.0"
     "prop-types" "^15.7.2"
 
-"react-native-gesture-handler@^2.13.1":
+"react-native-gesture-handler@^2.12.1":
   "integrity" "sha512-hW454X7sjuiBN+lobqw63pmT3boAmTl5OP6zQLq83iEe4T6PcHZ9lxzgCrebtgmutY8cJfq9rM2dOUVh9WBcww=="
   "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.13.1.tgz"
   "version" "2.13.1"
@@ -13832,7 +13832,7 @@
     "react-native" "^0.29.0"
     "react-native-linear-gradient" "^1.5.12"
 
-"react-native-reanimated@^3.5.4":
+"react-native-reanimated@^3.5.0-nightly-20230904-dbfef8ba4":
   "integrity" "sha512-8we9LLDO1o4Oj9/DICeEJ2K1tjfqkJagqQUglxeUAkol/HcEJ6PGxIrpBcNryLqCDYEcu6FZWld/FzizBIw6bg=="
   "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.5.4.tgz"
   "version" "3.5.4"

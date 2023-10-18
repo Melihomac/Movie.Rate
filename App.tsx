@@ -145,7 +145,10 @@ export default function App() {
               <Stack.Screen
                 name="Movie"
                 component={Movie}
-                options={{headerShown: false}}
+                options={{
+                  title: '',
+                  headerShown: false,
+                }}
               />
             </>
           )}

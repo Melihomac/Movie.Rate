@@ -8,6 +8,7 @@ import {
   Image,
   FlatList,
   ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {Card} from 'react-native-paper';
 import {TextInput} from 'react-native-gesture-handler';
@@ -27,7 +28,7 @@ interface Item {
   overview: string;
 }
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}: any) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,10 +43,16 @@ const SearchScreen = () => {
     });
   }, [searchNow]);
 
+  const handleMovie = (id: string) => {
+    navigation.navigate('Movie', {id});
+  };
+
   const renderItem = ({item}: {item: Item}) => {
     return (
       <View>
-        <TouchableOpacity style={{flexDirection: 'row'}}>
+        <TouchableOpacity
+          style={{flexDirection: 'row'}}
+          onPress={() => handleMovie(item?.id)}>
           <Image
             style={styles.sliderImageNewMovie}
             source={{
@@ -82,7 +89,7 @@ const SearchScreen = () => {
                 onChangeText={text => setSearchTerm(text)}
                 placeholder="Search for Movies..."
                 placeholderTextColor="black"
-                autoFocus
+                autoFocus={false}
                 autoComplete="off"
               />
             </View>
