@@ -11,7 +11,6 @@ import BackButton from '../../assets/img/BackButton.svg';
 import {useNavigation} from '@react-navigation/native';
 import useMovieDetail from '../hooks/useMovieDetail';
 import SafeAreaView from 'react-native-safe-area-view';
-import HeartIcon from '../../assets/icons/heart-regular.svg';
 import Heart from '../../assets/icons/heart-solid.svg';
 
 const Movie = ({route}) => {
@@ -30,41 +29,39 @@ const Movie = ({route}) => {
   const genreNames = genres.map(genre => genre.name);
   const genreText = genreNames.join(', ');
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView
+      style={styles.container}
+      forceInset={{top: 'never', bottom: 'always'}}>
       <ScrollView>
-        <SafeAreaView
-          style={styles.container}
-          forceInset={{top: 'never', bottom: 'always'}}>
-          <HeaderBackButton />
-          <Image
-            style={styles.sliderImageTrend}
-            source={{
-              uri: `https://image.tmdb.org/t/p/original${dataDetail?.poster_path}`,
-            }}
+        <HeaderBackButton />
+        <Image
+          style={styles.sliderImageTrend}
+          source={{
+            uri: `https://image.tmdb.org/t/p/original${dataDetail?.poster_path}`,
+          }}
+        />
+        <TouchableOpacity style={styles.heartIcon} onPress={HeartClicked}>
+          <Heart
+            width={30}
+            height={30}
+            style={{marginBottom: 10, marginTop: 10}}
           />
-          <TouchableOpacity style={styles.heartIcon} onPress={HeartClicked}>
-            <Heart
-              width={30}
-              height={30}
-              style={{marginBottom: 10, marginTop: 10}}
-            />
-          </TouchableOpacity>
-          <View style={styles.genreStyle}>
-            <Text style={{marginBottom: 5}}>Category: {genreText}</Text>
-            <Text style={{marginBottom: 5}}>
-              Duration: {dataDetail?.runtime} minutes
-            </Text>
-            <Text style={{marginBottom: 5}}>
-              Release Date: {dataDetail?.release_date}
-            </Text>
-          </View>
-          <Text style={styles.summaryTextStyle}>Summary</Text>
-          <View style={styles.summaryStyle}>
-            <Text>{dataDetail?.overview}</Text>
-          </View>
-        </SafeAreaView>
+        </TouchableOpacity>
+        <View style={styles.genreStyle}>
+          <Text style={{marginBottom: 5}}>Category: {genreText}</Text>
+          <Text style={{marginBottom: 5}}>
+            Duration: {dataDetail?.runtime} minutes
+          </Text>
+          <Text style={{marginBottom: 5}}>
+            Release Date: {dataDetail?.release_date}
+          </Text>
+        </View>
+        <Text style={styles.summaryTextStyle}>Summary</Text>
+        <View style={styles.summaryStyle}>
+          <Text>{dataDetail?.overview}</Text>
+        </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -91,7 +88,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   sliderImageTrend: {
-    height: '100%',
+    height: '130%',
     width: '100%',
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
@@ -124,7 +121,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Yi Baiti',
     marginLeft: 10,
     marginRight: 10,
-    marginBottom: 30,
   },
 });
 
