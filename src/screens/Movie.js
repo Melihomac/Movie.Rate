@@ -12,10 +12,12 @@ import {useNavigation} from '@react-navigation/native';
 import useMovieDetail from '../hooks/useMovieDetail';
 import SafeAreaView from 'react-native-safe-area-view';
 import HeartIcon from '../../assets/icons/heart-regular.svg';
+import Heart from '../../assets/icons/heart-solid.svg';
 
 const Movie = ({route}) => {
   const {id} = route.params;
   const {dataDetail, isLoading, error} = useMovieDetail(id);
+  const HeartClicked = () => {};
   const HeaderBackButton = () => {
     const navigation = useNavigation();
     return (
@@ -40,6 +42,13 @@ const Movie = ({route}) => {
               uri: `https://image.tmdb.org/t/p/original${dataDetail?.poster_path}`,
             }}
           />
+          <TouchableOpacity style={styles.heartIcon} onPress={HeartClicked}>
+            <Heart
+              width={30}
+              height={30}
+              style={{marginBottom: 10, marginTop: 10}}
+            />
+          </TouchableOpacity>
           <View style={styles.genreStyle}>
             <Text style={{marginBottom: 5}}>Category: {genreText}</Text>
             <Text style={{marginBottom: 5}}>
@@ -53,13 +62,6 @@ const Movie = ({route}) => {
           <View style={styles.summaryStyle}>
             <Text>{dataDetail?.overview}</Text>
           </View>
-          <TouchableOpacity style={styles.heartIcon}>
-            <HeartIcon
-              width={30}
-              height={30}
-              style={{marginBottom: 10, marginTop: 10}}
-            />
-          </TouchableOpacity>
         </SafeAreaView>
       </ScrollView>
     </View>
@@ -78,12 +80,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   heartIcon: {
-    width: '100%',
+    width: 'auto',
     backgroundColor: '#A20E0E',
     borderRadius: 15,
     alignItems: 'center',
     color: 'white',
     marginBottom: 5,
+    marginTop: 15,
+    marginLeft: 15,
+    marginRight: 15,
   },
   sliderImageTrend: {
     height: '100%',
