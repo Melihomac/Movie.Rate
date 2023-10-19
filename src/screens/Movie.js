@@ -10,9 +10,8 @@ import {
 import BackButton from '../../assets/img/BackButton.svg';
 import {useNavigation} from '@react-navigation/native';
 import useMovieDetail from '../hooks/useMovieDetail';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import SafeAreaView from 'react-native-safe-area-view';
-import HeartIcon from '../../assets/icons/heart-regular.svg';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import HeartIcon from '../../assets/icons/heart-solid.svg';
 
 const Movie = ({route}) => {
   const {id} = route.params;
@@ -29,10 +28,8 @@ const Movie = ({route}) => {
   const genreNames = genres.map(genre => genre.name);
   const genreText = genreNames.join(', ');
   return (
-    <SafeAreaView
-      style={styles.container}
-      forceInset={{top: 'never', bottom: 'always'}}>
-      <ScrollView style={styles.pageStyle}>
+    <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1}}>
+      <SafeAreaProvider>
         <HeaderBackButton />
         <Image
           style={styles.sliderImageTrend}
@@ -48,20 +45,20 @@ const Movie = ({route}) => {
           />
         </TouchableOpacity>
         <View style={styles.genreStyle}>
-          <Text style={{marginBottom: 5}}>Category: {genreText}</Text>
-          <Text style={{marginBottom: 5}}>
-            Duration: {dataDetail?.runtime} minutes
-          </Text>
-          <Text style={{marginBottom: 5}}>
-            Release Date: {dataDetail?.release_date}
-          </Text>
+          <Text>Category: {genreText}</Text>
+        </View>
+        <View style={styles.genreStyle}>
+          <Text>Duration: {dataDetail?.runtime} minutes</Text>
+        </View>
+        <View style={styles.genreStyle}>
+          <Text>Release Date: {dataDetail?.release_date}</Text>
         </View>
         <Text style={styles.summaryTextStyle}>Summary</Text>
         <View style={styles.summaryStyle}>
           <Text>{dataDetail?.overview}</Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaProvider>
+    </ScrollView>
   );
 };
 
@@ -70,14 +67,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  pageStyle: {
-    flexGrow: 1,
-  },
   backButton: {
     marginLeft: 30,
     marginTop: 60,
     zIndex: 2,
     position: 'absolute',
+  },
+  sliderImageTrend: {
+    height: '65%',
+    width: '100%',
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
   },
   heartIcon: {
     width: 'auto',
@@ -90,11 +90,6 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
   },
-  sliderImageTrend: {
-    height: '150%',
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
-  },
   genreStyle: {
     marginTop: 10,
     fontSize: 20,
@@ -104,6 +99,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     backgroundColor: '#f5f5f5',
+    flexDirection: 'row',
   },
   summaryTextStyle: {
     marginTop: 10,
@@ -124,6 +120,20 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 30,
+  },
+  submitButton: {
+    position: 'absolute',
+    bottom: 30,
+    left: 0,
+    marginLeft: 30,
+    marginRight: 30,
+    width: '100%',
+    height: 50,
+    borderRadius: 30,
+    backgroundColor: '#A20E0E',
+    color: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
