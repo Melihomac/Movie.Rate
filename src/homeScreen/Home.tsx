@@ -77,7 +77,7 @@ const Home = ({navigation}: any) => {
           <Image
             style={styles.sliderImageNewMovie}
             source={{
-              uri: `https://image.tmdb.org/t/p/w300/${item.poster_path}`,
+              uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
             }}
           />
           <Text style={styles.newMovieNames} numberOfLines={1}>

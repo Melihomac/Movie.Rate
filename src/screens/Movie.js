@@ -10,13 +10,13 @@ import {
 import BackButton from '../../assets/img/BackButton.svg';
 import {useNavigation} from '@react-navigation/native';
 import useMovieDetail from '../hooks/useMovieDetail';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SafeAreaView from 'react-native-safe-area-view';
-import Heart from '../../assets/icons/heart-solid.svg';
+import HeartIcon from '../../assets/icons/heart-regular.svg';
 
 const Movie = ({route}) => {
   const {id} = route.params;
   const {dataDetail, isLoading, error} = useMovieDetail(id);
-  const HeartClicked = () => {};
   const HeaderBackButton = () => {
     const navigation = useNavigation();
     return (
@@ -32,7 +32,7 @@ const Movie = ({route}) => {
     <SafeAreaView
       style={styles.container}
       forceInset={{top: 'never', bottom: 'always'}}>
-      <ScrollView>
+      <ScrollView style={styles.pageStyle}>
         <HeaderBackButton />
         <Image
           style={styles.sliderImageTrend}
@@ -40,8 +40,8 @@ const Movie = ({route}) => {
             uri: `https://image.tmdb.org/t/p/original${dataDetail?.poster_path}`,
           }}
         />
-        <TouchableOpacity style={styles.heartIcon} onPress={HeartClicked}>
-          <Heart
+        <TouchableOpacity style={styles.heartIcon}>
+          <HeartIcon
             width={30}
             height={30}
             style={{marginBottom: 10, marginTop: 10}}
@@ -70,6 +70,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  pageStyle: {
+    flexGrow: 1,
+  },
   backButton: {
     marginLeft: 30,
     marginTop: 60,
@@ -88,8 +91,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   sliderImageTrend: {
-    height: '130%',
-    width: '100%',
+    height: '150%',
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
   },
@@ -121,6 +123,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Yi Baiti',
     marginLeft: 10,
     marginRight: 10,
+    marginBottom: 30,
   },
 });
 
