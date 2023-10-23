@@ -6,12 +6,25 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import BackButton from '../../assets/img/BackButton.svg';
 import {useNavigation} from '@react-navigation/native';
 import useMovieDetail from '../hooks/useMovieDetail';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import HeartIcon from '../../assets/icons/heart-solid.svg';
+
+const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
+const SCALE_FACTOR_HORIZONTAL = screenWidth / 375;
+const SCALE_FACTOR_VERTICAL = screenHeight / 812;
+
+const scaleWidth = width => {
+  return width * SCALE_FACTOR_HORIZONTAL;
+};
+
+const scaleHeight = height => {
+  return height * SCALE_FACTOR_VERTICAL;
+};
 
 const Movie = ({route}) => {
   const {id} = route.params;
@@ -28,8 +41,8 @@ const Movie = ({route}) => {
   const genreNames = genres.map(genre => genre.name);
   const genreText = genreNames.join(', ');
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1}}>
-      <SafeAreaProvider>
+    <View style={{flex: 1}}>
+      <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <HeaderBackButton />
         <Image
           style={styles.sliderImageTrend}
@@ -57,14 +70,13 @@ const Movie = ({route}) => {
         <View style={styles.summaryStyle}>
           <Text>{dataDetail?.overview}</Text>
         </View>
-      </SafeAreaProvider>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: 'white',
   },
   backButton: {
@@ -74,8 +86,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   sliderImageTrend: {
-    height: '65%',
-    width: '100%',
+    height: scaleHeight(600),
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
   },
@@ -122,7 +133,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   submitButton: {
-    position: 'absolute',
     bottom: 30,
     left: 0,
     marginLeft: 30,

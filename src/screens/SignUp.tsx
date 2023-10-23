@@ -1,4 +1,5 @@
-import React, {useEffect, useState, useRef} from 'react';
+import * as React from 'react';
+import {useEffect, useState, useRef} from 'react';
 import {
   StyleSheet,
   View,
@@ -80,7 +81,6 @@ const SignUp = () => {
     } else {
       setErrorName(null);
     }
-
     setLoading(true);
     try {
       const response = await createUserWithEmailAndPassword(
