@@ -6,43 +6,31 @@ import {
   Image,
   Text,
   TouchableOpacity,
-  Dimensions,
 } from 'react-native';
 import BackButton from '../../assets/img/BackButton.svg';
 import {useNavigation} from '@react-navigation/native';
 import useMovieDetail from '../hooks/useMovieDetail';
-import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import HeartIcon from '../../assets/icons/heart-solid.svg';
+import {scaleHeight} from '../ScaleProps/ScaleProps';
 
-const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
-const SCALE_FACTOR_HORIZONTAL = screenWidth / 375;
-const SCALE_FACTOR_VERTICAL = screenHeight / 812;
-
-const scaleWidth = width => {
-  return width * SCALE_FACTOR_HORIZONTAL;
-};
-
-const scaleHeight = height => {
-  return height * SCALE_FACTOR_VERTICAL;
+const HeaderBackButton = () => {
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity onPress={navigation.goBack} style={styles.backButton}>
+      <BackButton width={30} height={30} />
+    </TouchableOpacity>
+  );
 };
 
 const Movie = ({route}) => {
   const {id} = route.params;
-  const {dataDetail, isLoading, error} = useMovieDetail(id);
-  const HeaderBackButton = () => {
-    const navigation = useNavigation();
-    return (
-      <TouchableOpacity onPress={navigation.goBack} style={styles.backButton}>
-        <BackButton width={30} height={30} />
-      </TouchableOpacity>
-    );
-  };
+  const {dataDetail} = useMovieDetail(id);
   const genres = dataDetail?.genres || [];
   const genreNames = genres.map(genre => genre.name);
   const genreText = genreNames.join(', ');
   return (
-    <View style={{flex: 1}}>
-      <ScrollView contentContainerStyle={{flexGrow: 1}}>
+    <View style={styles.ViewStyle}>
+      <ScrollView style={styles.ScroolViewStyle}>
         <HeaderBackButton />
         <Image
           style={styles.sliderImageTrend}
@@ -51,11 +39,7 @@ const Movie = ({route}) => {
           }}
         />
         <TouchableOpacity style={styles.heartIcon}>
-          <HeartIcon
-            width={30}
-            height={30}
-            style={{marginBottom: 10, marginTop: 10}}
-          />
+          <HeartIcon width={30} height={30} style={styles.HeartIconStyle} />
         </TouchableOpacity>
         <View style={styles.genreStyle}>
           <Text>Category: {genreText}</Text>
@@ -79,11 +63,19 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
   },
+  ScroolViewStyle: {
+    flexGrow: 1,
+  },
+  ViewStyle: {flex: 1},
   backButton: {
     marginLeft: 30,
     marginTop: 60,
     zIndex: 2,
     position: 'absolute',
+  },
+  HeartIconStyle: {
+    marginBottom: 10,
+    marginTop: 10,
   },
   sliderImageTrend: {
     height: scaleHeight(600),

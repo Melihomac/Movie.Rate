@@ -1,13 +1,12 @@
 import * as React from 'react';
-import Image, {View, StyleSheet} from 'react-native';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Welcome from './src/welcome/Welcome';
 import HeaderBackButton from './src/HeaderBackButton/HeaderBackButton';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
-import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SignIn from './src/screens/SignIn';
 import SignUp from './src/screens/SignUp';
 import Loading from './src/LoadingScreen/Loading';
@@ -125,7 +124,7 @@ export default function App() {
                 options={{
                   title: '',
                   headerShadowVisible: false,
-                  headerLeft: () => <HeaderBackButton />,
+                  headerLeft: HeaderBackButton,
                 }}
               />
               <Stack.Screen
@@ -157,5 +156,3 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({});

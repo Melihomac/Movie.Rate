@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect, useState, useRef} from 'react';
+import {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -8,18 +8,13 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   KeyboardAvoidingView,
-  FlatList,
 } from 'react-native';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import 'react-native-gesture-handler';
-import {FIREBASE_APP, FIREBASE_AUTH, FIRESTORE_DB} from '../../FirebaseConfig';
-import {db} from '../../FirebaseConfig';
+import {FIREBASE_AUTH} from '../../FirebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
-import {ref, set} from 'firebase/database';
 import 'react-native-get-random-values';
-import uuid from 'react-native-uuid';
-let uuidKey = uuid.v4();
 
 const SignUp = () => {
   const navigation = useNavigation();
@@ -143,9 +138,7 @@ const SignUp = () => {
           ) : (
             <>
               <TouchableOpacity style={styles.signinButton} onPress={signUp}>
-                <Text style={{color: '#fff', textAlign: 'center'}}>
-                  Sign Up &#10140;
-                </Text>
+                <Text style={styles.signUpTextStyle}>Sign Up &#10140;</Text>
               </TouchableOpacity>
             </>
           )}
@@ -178,6 +171,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     color: '#242424',
   },
+  signUpTextStyle: {color: '#fff', textAlign: 'center'},
   signinDetailText: {
     fontSize: 15,
     marginLeft: 30,

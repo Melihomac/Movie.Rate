@@ -1,5 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {useEffect, useState} from 'react';
 import {onAuthStateChanged} from 'firebase/auth';
 import {FIREBASE_AUTH} from '../../FirebaseConfig';
 

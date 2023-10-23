@@ -3,15 +3,12 @@ import {
   StyleSheet,
   View,
   Text,
-  Button,
   TouchableOpacity,
   Image,
   RefreshControl,
 } from 'react-native';
-import {signOut} from 'firebase/auth';
-import {FIREBASE_AUTH} from '../../FirebaseConfig';
-import {useState, useEffect} from 'react';
-import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import {useState} from 'react';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import useHookGenre from '../hooks/useHookGenre';
 import useHookTrend from '../hooks/useHookTrend';
@@ -28,16 +25,13 @@ interface Item {
 }
 
 const Home = ({navigation}: any) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const onChangeSearch = (query: any) => setSearchQuery(query);
-  const [selectedItem, setSelectedItem] = useState('All');
+  const [selectedItem] = useState('All');
   const [refreshing, setRefreshing] = React.useState(false);
-  const {dataGenre, isLoading, error} = useHookGenre();
-  const {dataTrend, isLoadingTrend, errorTrend} = useHookTrend();
-  const {dataNewMovie, isLoadingNewMovie, errorNewMovie} = useHookNewMovie();
-  const {dataComing, isLoadingComing, errorComing} = useHookComingSoon();
-  const {dataTopRated, isLoadingTopRated, errorTopRated} = useHookTopRated();
+  const {dataGenre} = useHookGenre();
+  const {dataTrend} = useHookTrend();
+  const {dataNewMovie} = useHookNewMovie();
+  const {dataComing} = useHookComingSoon();
+  const {dataTopRated} = useHookTopRated();
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
@@ -88,21 +82,11 @@ const Home = ({navigation}: any) => {
     );
   };
   const renderHeader = () => {
+    const colorStyle = {color: selectedItem === 'All' ? '#A20E0E' : '#242424'};
     return (
       <View>
         <TouchableOpacity>
-          <Text
-            style={{
-              borderColor: '#B4B4B4',
-              borderWidth: 1,
-              borderRadius: 15,
-              margin: 2.5,
-              fontSize: 15,
-              padding: 5,
-              color: selectedItem === 'All' ? '#A20E0E' : '#242424',
-            }}>
-            All
-          </Text>
+          <Text style={[styles.headerTextStyle, colorStyle]}>All</Text>
         </TouchableOpacity>
       </View>
     );
@@ -189,6 +173,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 25,
     color: '#242424',
+  },
+  headerTextStyle: {
+    borderColor: '#B4B4B4',
+    borderWidth: 1,
+    borderRadius: 15,
+    margin: 2.5,
+    fontSize: 15,
+    padding: 5,
   },
   newMovieFont: {
     marginLeft: 15,
