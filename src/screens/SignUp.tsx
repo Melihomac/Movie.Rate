@@ -15,6 +15,7 @@ import 'react-native-gesture-handler';
 import {FIREBASE_AUTH} from '../../FirebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import 'react-native-get-random-values';
+import {db} from '../../FirebaseConfig';
 
 const SignUp = () => {
   const navigation = useNavigation();
@@ -31,6 +32,12 @@ const SignUp = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+  const timeStamp = Math.floor(Date.now() / 1000);
+  const insertKey = '_' + timeStamp;
+  const contactsDbRef = db
+    .app()
+    .database()
+    .ref('users/' + insertKey);
   const signUp = async () => {
     // function createDB() {
     //   const {currentUser} = auth;
@@ -82,7 +89,18 @@ const SignUp = () => {
         auth,
         email,
         password,
-      );
+      ).then(data => {
+        console.log('User ID :- ', data.user.uid);
+        contactsDbRef
+          .set({
+            name: name,
+            number: data.user.uid,
+            email: email,
+          })
+          .then(() => {
+            console.log('Data updated');
+          });
+      });
       console.log(response);
     } catch (error: any) {
       console.log(error.message);
@@ -90,6 +108,7 @@ const SignUp = () => {
       setLoading(false);
     }
   };
+
   return (
     <ScrollView style={styles.container}>
       <Image
