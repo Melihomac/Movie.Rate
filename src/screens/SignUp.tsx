@@ -15,7 +15,7 @@ import 'react-native-gesture-handler';
 import {FIREBASE_AUTH} from '../../FirebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import 'react-native-get-random-values';
-import {db} from '../../FirebaseConfig';
+import database from '@react-native-firebase/database';
 
 const SignUp = () => {
   const navigation = useNavigation();
@@ -28,16 +28,10 @@ const SignUp = () => {
   const [errorEmail, setErrorEmail] = useState<string | null>(null);
   const [errorName, setErrorName] = useState<string | null>(null);
   const auth = FIREBASE_AUTH;
-  const validateEmail = (email: any) => {
+  const validateEmail = email => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-  const timeStamp = Math.floor(Date.now() / 1000);
-  const insertKey = '_' + timeStamp;
-  const contactsDbRef = db
-    .app()
-    .database()
-    .ref('users/' + insertKey);
   const signUp = async () => {
     // function createDB() {
     //   const {currentUser} = auth;
@@ -91,15 +85,13 @@ const SignUp = () => {
         password,
       ).then(data => {
         console.log('User ID :- ', data.user.uid);
-        contactsDbRef
+        const newPostRef = database().ref('users').push();
+        newPostRef
           .set({
             name: name,
-            number: data.user.uid,
-            email: email,
+            id: data.user.uid,
           })
-          .then(() => {
-            console.log('Data updated');
-          });
+          .then(() => console.log('Data set.'));
       });
       console.log(response);
     } catch (error: any) {
