@@ -84,7 +84,7 @@ const SignUp = () => {
         email,
         password,
       ).then(data => {
-        console.log('User ID :- ', data.user.uid);
+        console.log('User ID : ', data.user.uid);
         const newPostRef = database().ref('users').push();
         newPostRef
           .set({
