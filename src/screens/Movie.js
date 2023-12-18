@@ -12,7 +12,6 @@ import {useNavigation} from '@react-navigation/native';
 import useMovieDetail from '../hooks/useMovieDetail';
 import HeartIcon from '../../assets/icons/heart-solid.svg';
 import {scaleHeight} from '../ScaleProps/ScaleProps';
-import database from '@react-native-firebase/database';
 
 const HeaderBackButton = () => {
   const navigation = useNavigation();
@@ -30,12 +29,6 @@ const Movie = ({route}) => {
   const genreNames = genres.map(genre => genre.name);
   const genreText = genreNames.join(', ');
   const likedMovies = () => {
-    const newPostRef = database().ref('user').push();
-    newPostRef
-      .set({
-        name: dataDetail?.original_title,
-      })
-      .then(() => console.log('Data set.'));
     console.log(dataDetail?.original_title);
   };
   return (
