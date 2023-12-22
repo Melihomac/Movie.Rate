@@ -5,11 +5,11 @@ import {
   View,
   FlatList,
   RefreshControl,
-  ScrollView,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import {firebase} from '../../FirebaseConfig';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const readDataFromFirestore = async collection => {
   try {
@@ -21,8 +21,6 @@ const readDataFromFirestore = async collection => {
     throw error;
   }
 };
-
-// Diğer import bildirimleri burada...
 
 const List = () => {
   const [todos, setTodos] = useState([]);
@@ -49,15 +47,15 @@ const List = () => {
   };
 
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }>
-      <SafeAreaProvider style={styles.container}>
+    <View style={styles.container}>
+      <SafeAreaView style={styles.safeArea}>
         <FlatList
           data={todos}
           keyExtractor={todo => todo.id}
           style={styles.movieNameStyle}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
           renderItem={({item}) => (
             <View style={styles.movieContainer}>
               <Image
@@ -73,15 +71,18 @@ const List = () => {
                 <Text style={styles.releaseDate} numberOfLines={1}>
                   Release Date: {item.release_date}
                 </Text>
-                <Text style={styles.overviewStyle} numberOfLines={7}>
+                <Text style={styles.overviewStyle} numberOfLines={9}>
                   {item.overview}
                 </Text>
               </View>
             </View>
           )}
         />
-      </SafeAreaProvider>
-    </ScrollView>
+      </SafeAreaView>
+      <TouchableOpacity style={styles.buttonStyle}>
+        <Text style={styles.buttonTextStyle}>Generate AI</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -89,6 +90,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  safeArea: {
+    flex: 1,
   },
   movieNameStyle: {
     marginTop: 15,
@@ -125,6 +129,21 @@ const styles = StyleSheet.create({
   },
   movieInfoStyle: {
     flex: 1,
+  },
+  buttonStyle: {
+    width: '90%',
+    borderColor: '#A20E0E',
+    borderWidth: 2,
+    padding: 5,
+    marginLeft: 15,
+    borderRadius: 15,
+    zIndex: 3,
+    marginTop: 1,
+  },
+  buttonTextStyle: {
+    fontSize: 30,
+    fontFamily: 'Arial',
+    textAlign: 'center',
   },
 });
 
