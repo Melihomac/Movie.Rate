@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {firebase} from '../../FirebaseConfig';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import DiscoverScreen from '../DiscoverScreen/DiscoverScreen';
 
 const readDataFromFirestore = async collection => {
   try {
@@ -22,7 +23,7 @@ const readDataFromFirestore = async collection => {
   }
 };
 
-const List = () => {
+const List = navigation => {
   const [todos, setTodos] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -33,7 +34,7 @@ const List = () => {
     } catch (error) {
       console.error('Veri getirme hatası:', error);
     } finally {
-      setRefreshing(false); // Yenileme işlemi tamamlandığında refreshing'i false yap
+      setRefreshing(false);
     }
   };
 
@@ -44,6 +45,10 @@ const List = () => {
   const onRefresh = () => {
     setRefreshing(true);
     fetchData();
+  };
+
+  const handleGenerateAI = () => {
+    navigation.navigate(DiscoverScreen);
   };
 
   return (
@@ -79,7 +84,7 @@ const List = () => {
           )}
         />
       </SafeAreaView>
-      <TouchableOpacity style={styles.buttonStyle}>
+      <TouchableOpacity style={styles.buttonStyle} onPress={handleGenerateAI}>
         <Text style={styles.buttonTextStyle}>Generate AI</Text>
       </TouchableOpacity>
     </View>
@@ -141,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: 1,
   },
   buttonTextStyle: {
-    fontSize: 30,
+    fontSize: 25,
     fontFamily: 'Arial',
     textAlign: 'center',
   },

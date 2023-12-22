@@ -149,6 +149,22 @@ export default function App() {
                   headerShown: false,
                 }}
               />
+              <Stack.Screen
+                name="List"
+                component={List}
+                options={{
+                  title: '',
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="DiscoverScreen"
+                component={DiscoverScreen}
+                options={{
+                  title: '',
+                  headerShown: false,
+                }}
+              />
             </>
           )}
         </Stack.Navigator>
