@@ -1,27 +1,18 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {collection, addDoc} from 'firebase/firestore';
 import {database} from '../../FirebaseConfig';
-import {resolve} from 'path';
+import uuid from 'react-native-uuid';
 
 export const likedMovies = async dataDetail => {
   try {
-    const result = await AsyncStorage.getItem('likedMovie');
-    console.log('result ' + result);
+    const uuidNumber = uuid.v1();
+    console.log(uuidNumber);
+    const docRef = await addDoc(collection(database, 'movies'), {
+      name: dataDetail?.original_title,
+      id: uuidNumber,
+    });
+    console.log('Document written with ID: ', docRef.id);
 
-    await AsyncStorage.setItem('likedMovie', dataDetail?.original_title);
-
-    let key;
-    key = database().ref('/movies').push.key;
-    console.log(key);
-    database
-      .ref('movies')
-      .update(result)
-      .then(snapshot => {
-        resolve(snapshot);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    return result, true;
+    return true;
   } catch (error) {
     console.error('Error saving liked movie:', error);
     return false;

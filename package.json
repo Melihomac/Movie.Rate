@@ -27,7 +27,7 @@
     "@types/node": "^20.5.4",
     "@types/react-dom": "^18.2.7",
     "axios": "^1.5.1",
-    "firebase": "^10.4.0",
+    "firebase": "^10.7.1",
     "native-base": "^3.4.28",
     "path": "^0.12.7",
     "react": "18.2.0",
