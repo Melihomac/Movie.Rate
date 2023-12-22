@@ -9,6 +9,9 @@ export const likedMovies = async dataDetail => {
     const docRef = await addDoc(collection(database, 'movies'), {
       name: dataDetail?.original_title,
       id: uuidNumber,
+      image: dataDetail?.poster_path,
+      release_date: dataDetail?.release_date,
+      overview: dataDetail?.overview,
     });
     console.log('Document written with ID: ', docRef.id);
 
