@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import {firebase} from '../../FirebaseConfig';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import DiscoverScreen from '../DiscoverScreen/DiscoverScreen';
 
 const readDataFromFirestore = async collection => {
   try {
@@ -23,7 +22,7 @@ const readDataFromFirestore = async collection => {
   }
 };
 
-const List = navigation => {
+const List = () => {
   const [todos, setTodos] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -45,10 +44,6 @@ const List = navigation => {
   const onRefresh = () => {
     setRefreshing(true);
     fetchData();
-  };
-
-  const handleGenerateAI = () => {
-    navigation.navigate(DiscoverScreen);
   };
 
   return (
@@ -84,7 +79,7 @@ const List = navigation => {
           )}
         />
       </SafeAreaView>
-      <TouchableOpacity style={styles.buttonStyle} onPress={handleGenerateAI}>
+      <TouchableOpacity style={styles.buttonStyle}>
         <Text style={styles.buttonTextStyle}>Generate AI</Text>
       </TouchableOpacity>
     </View>

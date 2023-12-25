@@ -7,14 +7,14 @@ const ChatGPT35 = () => {
   const [inputText, setInputText] = useState('');
   const sendMessage = async () => {
     const userMessage = {role: 'user', content: inputText};
-    setMessages([...messages, userMessage]);
+    setMessages([...'messages', userMessage]);
     setInputText('');
     try {
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         {
           model: 'gpt-3.5-turbo',
-          messages: [...messages, userMessage],
+          messages: [...'messages', userMessage],
         },
         {
           headers: {
