@@ -49,6 +49,9 @@ const List = () => {
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
+        <View style={styles.header}>
+          <Text style={styles.favMovieHeader}>Your Favourite Movies</Text>
+        </View>
         <FlatList
           data={todos}
           keyExtractor={todo => todo.id}
@@ -79,9 +82,6 @@ const List = () => {
           )}
         />
       </SafeAreaView>
-      <TouchableOpacity style={styles.buttonStyle}>
-        <Text style={styles.buttonTextStyle}>Generate AI</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -110,6 +110,20 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
   },
+  favMovieHeader: {
+    width: '90%',
+    borderColor: '#A20E0E',
+    borderWidth: 2,
+    padding: 5,
+    marginLeft: 15,
+    borderRadius: 15,
+    zIndex: 3,
+    marginTop: 10,
+    marginBottom: -10,
+    fontSize: 20,
+    fontFamily: 'Arial',
+    textAlign: 'center',
+  },
   releaseDate: {
     fontSize: 15,
     width: '100%',
@@ -129,21 +143,6 @@ const styles = StyleSheet.create({
   },
   movieInfoStyle: {
     flex: 1,
-  },
-  buttonStyle: {
-    width: '90%',
-    borderColor: '#A20E0E',
-    borderWidth: 2,
-    padding: 5,
-    marginLeft: 15,
-    borderRadius: 15,
-    zIndex: 3,
-    marginTop: 1,
-  },
-  buttonTextStyle: {
-    fontSize: 25,
-    fontFamily: 'Arial',
-    textAlign: 'center',
   },
 });
 

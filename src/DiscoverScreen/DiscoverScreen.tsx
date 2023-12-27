@@ -61,15 +61,19 @@ const DiscoverScreen = () => {
       <ScrollView>
         <SafeAreaView style={styles.safeArea}>
           <View>
-            <View>
+            <View style={styles.header}>
               <Text style={styles.favMovieHeader}>Your Favourite Movies</Text>
               <Text style={styles.favMovieName}>{movieNameList}</Text>
             </View>
-            <TouchableOpacity style={styles.buttonStyle} onPress={sendRequest}>
-              <Text style={styles.buttonTextStyle}>Generate AI</Text>
-            </TouchableOpacity>
-            <View>
-              <Text style={styles.textStyle}>{outputText}</Text>
+            <View style={styles.header2}>
+              <TouchableOpacity
+                style={styles.buttonStyle}
+                onPress={sendRequest}>
+                <Text style={styles.buttonTextStyle}>Generate AI</Text>
+              </TouchableOpacity>
+              <View>
+                <Text style={styles.textStyle}>{outputText}</Text>
+              </View>
             </View>
           </View>
         </SafeAreaView>
@@ -101,6 +105,19 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial',
     textAlign: 'center',
   },
+  header: {
+    borderWidth: 2,
+    margin: 10,
+    borderRadius: 15,
+    borderColor: '#A20E0E',
+  },
+  header2: {
+    borderWidth: 2,
+    margin: 10,
+    marginTop: -5,
+    borderRadius: 15,
+    borderColor: '#A20E0E',
+  },
   textStyle: {
     fontSize: 15,
     fontFamily: 'Arial',
@@ -109,15 +126,17 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   favMovieHeader: {
-    fontSize: 30,
-    padding: 15,
-    borderWidth: 2,
-    marginLeft: 5,
-    marginRight: 5,
-    marginBottom: 5,
-    textAlign: 'center',
-    borderRadius: 5,
+    width: '90%',
     borderColor: '#A20E0E',
+    borderWidth: 2,
+    padding: 5,
+    marginLeft: 15,
+    borderRadius: 15,
+    zIndex: 3,
+    marginTop: 15,
+    fontSize: 30,
+    fontFamily: 'Arial',
+    textAlign: 'center',
   },
   favMovieName: {
     padding: 15,
