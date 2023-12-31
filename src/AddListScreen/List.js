@@ -6,10 +6,10 @@ import {
   FlatList,
   RefreshControl,
   Image,
-  TouchableOpacity,
 } from 'react-native';
 import {firebase} from '../../FirebaseConfig';
 import {SafeAreaView} from 'react-native-safe-area-context';
+//import {useDeviceName} from 'react-native-device-info';
 
 const readDataFromFirestore = async collection => {
   try {
@@ -25,6 +25,8 @@ const readDataFromFirestore = async collection => {
 const List = () => {
   const [todos, setTodos] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  //let deviceJson = {};
+  //deviceJson.deviceName = useDeviceName();
 
   const fetchData = async () => {
     try {
@@ -101,7 +103,6 @@ const styles = StyleSheet.create({
   },
   movieContainer: {
     flexDirection: 'row',
-    marginBottom: 15,
   },
   sliderImageNewMovie: {
     height: 250,
