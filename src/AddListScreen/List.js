@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   movieNameStyle: {
-    marginTop: 15,
     borderRadius: 15,
+    marginTop: 15,
     padding: 5,
   },
   movieContainer: {
